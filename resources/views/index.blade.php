@@ -22,64 +22,65 @@
             <header class="px-8 py-8 mb-8">
                 <section class="justify-between">
                     <ul class="flex justify-between">
-                        <li><h1><router-link :to="{ name: 'home' }"><img alt="Logo" src="/images/logo.svg"></router-link></h1></li>
-                        <li class="text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'hosts' }">HOSTS</router-link></li>
-                        <li class="text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'chapters' }">CHAPTERS</router-link></li>
-                        <li class="text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'episodes' }">EPISODES</router-link></li>
-                        <li class="text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'gallery' }">GALLERY</router-link></li>
-                        <ul class="flex">
-                            <li class="bg-white">
-                                <a href="#">
-                                    <img alt="Instagram" src="/images/social/instagram.svg" class="w-4">
-                                </a>
-                            </li>
-                            <li class="bg-white">
-                                <a href="#">
-                                    <img alt="Twitter" src="/images/social/twitter.svg" class="w-4">
-                                </a>
-                            </li>
-                            <li class="bg-white">
-                                <a href="#">
-                                    <img alt="Facebook" src="/images/social/facebook.svg" class="w-4">
-                                </a>
-                            </li>
-                            <li class="bg-white">
-                                <a href="#">
-                                    <img alt="Web" src="/images/social/web.svg" class="w-4">
-                                </a>
-                            </li>
-                        </ul>
+                        <li class="my-auto"><h1><router-link :to="{ name: 'home' }"><img alt="Logo" src="/images/logo.svg"></router-link></h1></li>
+                        <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'hosts' }">HOSTS</router-link></li>
+                        <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'chapters' }">CHAPTERS</router-link></li>
+                        <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'episodes' }">EPISODES</router-link></li>
+                        <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'gallery' }">GALLERY</router-link></li>
+                            <ul class="flex">
+                                <li class="justify-between my-auto bg-white">
+                                    <a href="#">
+                                        <img alt="Instagram" src="/images/social/instagram.svg" class="w-6">
+                                    </a>
+                                </li>
+                                <li class="my-auto bg-white">
+                                    <a href="#">
+                                        <img alt="Twitter" src="/images/social/twitter.svg" class="w-6">
+                                    </a>
+                                </li>
+                                <li class="my-auto bg-white">
+                                    <a href="#">
+                                        <img alt="Facebook" src="/images/social/facebook.svg" class="w-6">
+                                    </a>
+                                </li>
+                                <li class="my-auto bg-white">
+                                    <a href="#">
+                                        <img alt="Web" src="/images/social/web.svg" class="w-6">
+                                    </a>
+                                </li>
+                            </ul>
                         <li>
-                            <div class="relative inline-block text-left">
-                                <div>
-                                    <button type="button" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="options-menu" aria-haspopup="true" aria-expanded="true">
-                                        <img alt="Instagram" src="/images/social/user.svg" class="w-4">
-                                    </button>
-                                </div>
-                                <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
-                                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                        <h1>
-                                        @if (Route::has('login'))
-                                            <div class="">
-                                                @auth
-                                                    <a href="{{ url('/home') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Home</a>
-                                                @else
-                                                    <a href="{{ route('login') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Log in</a>
+                            <div class="flex justify-center">
+                            <!-- Dropdown -->
+                            <div x-data="{ open: false }" class="relative">
+                                <button x-on:click="open = true" class="block w-12 h-12 overflow-hidden bg-white rounded-full focus:outline-none">
+                                    <img class="object-cover w-full h-full" src="/images/social/user.svg" alt="avatar">
+                                </button>
+                                <!-- Dropdown Body -->
+                                <div x-show.transition="open" x-on:click.away="open = false" class="absolute right-0 w-40 py-2 mt-2 bg-white border rounded shadow-xl">
+                                    @if (Route::has('login'))
+                                        <div class="">
+                                            @auth
+                                                <a href="{{ url('/home') }}" class="block px-4 py-2 text-gray-900 transition-colors duration-200 rounded text-normal hover:bg-purple-500 hover:text-white">Home</a>
+                                            @else
+                                                <a href="{{ route('login') }}" class="block px-4 py-2 text-gray-900 transition-colors duration-200 rounded text-normal hover:bg-purple-500 hover:text-white">Log in</a>
 
-                                                    @if (Route::has('register'))
-                                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                                                    @endif
-                                                @endauth
-                                            </div>
-                                        @endif
-                                        </h1>
-                                        <form method="POST" action="#">
-                                        <button type="submit" class="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">
-                                        Sign out
-                                        </button>
-                                    </form>
-                                    </div>
+                                                @if (Route::has('register'))
+                                                    <a href="{{ route('register') }}" class="block px-4 py-2 text-gray-900 transition-colors duration-200 rounded text-normal hover:bg-purple-500 hover:text-white">Register</a>
+                                                @endif
+                                            @endauth
+                                        </div>
+                                    @endif                                           
+                                <div class="py-2">
+                                    <hr></hr>
                                 </div>
+                                <a href="#" class="block px-4 py-2 text-gray-900 transition-colors duration-200 rounded text-normal hover:bg-purple-500 hover:text-white">    
+                                Logout
+                                </a>
+                            </div>
+                            <!-- // Dropdown Body -->
+                            </div>
+                            <!-- // Dropdown -->
                             </div>
                         </li>
                     </ul>

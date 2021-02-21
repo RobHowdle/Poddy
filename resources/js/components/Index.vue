@@ -1,21 +1,24 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
+    <div>
+        <h1 class="text-white">Here is the latest episode:</h1>
+        <div v-for="episode in episodes" v-bind:key="episode.id">
+            <latest-episode-block
+                v-bind:id="episode.id"
+                v-bind:title="episode.title"
+                v-bind:chapter="episode.chapter"
+                v-bind:author="episode.author"
+            ></latest-episode-block>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
+    import LatestEpisodeBlock from '../components/LatestEpisodeBlock';
 
+    export default {
+        name: 'Index',
+        components: {
+            LatestEpisodeBlock
+        }
     }
 </script>

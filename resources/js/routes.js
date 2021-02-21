@@ -4,6 +4,7 @@ import Hosts from './components/Hosts';
 import Chapters from './components/Chapters';
 import Episodes from './components/Episodes';
 import Gallery from './components/Gallery';
+import LatestEpisodeBlock from './components/LatestEpisodeBlock';
 
 export default {
     mode: 'history',
