@@ -3889,12 +3889,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Index',
@@ -3923,18 +3917,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      props: ['id', 'title', 'chapter', 'author'],
-      episodes: [{
-        id: 1,
-        title: 'Episode 1 - Something Scary',
-        chapter: 'Cumbria Chapter',
-        author: 'Flex'
-      }]
-    };
-  }
+  props: ["episodeText"]
 });
 
 /***/ }),
@@ -4877,25 +4876,9 @@ var render = function() {
         _vm._v("Here is the latest episode:")
       ]),
       _vm._v(" "),
-      _vm._l(_vm.episodes, function(episode) {
-        return _c(
-          "div",
-          { key: episode.id },
-          [
-            _c("latest-episode-block", {
-              attrs: {
-                id: episode.id,
-                title: episode.title,
-                chapter: episode.chapter,
-                author: episode.author
-              }
-            })
-          ],
-          1
-        )
-      })
+      _c("LatestEpisodeBlock", { attrs: { "episode-text": "Episode 1" } })
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -4922,14 +4905,65 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h1", { staticClass: "text-5xl text-white" }, [
-      _vm._v("I am the latest episode")
-    ]),
-    _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.$title))])
+    _c("div", { staticClass: "p-10" }, [
+      _c("div", { staticClass: "max-w-sm overflow-hidden rounded shadow-lg" }, [
+        _c("img", {
+          staticClass: "w-full",
+          attrs: { src: "https://dummyimage.com/vga", alt: "Mountain" }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "px-6 py-4" }, [
+          _c("div", { staticClass: "mb-2 text-xl font-bold" }, [
+            _vm._v("Latest Episode")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-base text-gray-700" }, [
+            _vm._v(
+              "\n            " + _vm._s(_vm.episodeText) + "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "px-6 pt-4 pb-2" }, [
+      _c(
+        "span",
+        {
+          staticClass:
+            "inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full"
+        },
+        [_vm._v("#photography")]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full"
+        },
+        [_vm._v("#travel")]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full"
+        },
+        [_vm._v("#winter")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

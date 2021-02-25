@@ -22,7 +22,11 @@
             <header class="px-8 py-8 mb-8">
                 <section class="justify-between">
                     <ul class="flex justify-between">
-                        <li class="my-auto"><h1><router-link :to="{ name: 'home' }"><img alt="Logo" src="/images/logo.svg"></router-link></h1></li>
+                        <li class="my-auto">
+                            <h1>
+                                <router-link :to="{ name: 'home' }"><img alt="Logo" src="/images/Asset22.svg"></router-link>
+                            </h1>
+                        </li>
                         <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'hosts' }">HOSTS</router-link></li>
                         <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'chapters' }">CHAPTERS</router-link></li>
                         <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'episodes' }">EPISODES</router-link></li>
@@ -72,7 +76,7 @@
                                         </div>
                                     @endif                                           
                                 <div class="py-2">
-                                    <hr></hr>
+                                    <hr>
                                 </div>
                                 <a href="#" class="block px-4 py-2 text-gray-900 transition-colors duration-200 rounded text-normal hover:bg-purple-500 hover:text-white">    
                                 Logout
