@@ -1,8 +1,6 @@
 <template>
     <div>
-        <h1 class="text-white">Here is the latest episode:</h1>
-        <LatestEpisodeBlock episode-text="Episode 1"></LatestEpisodeBlock>
-        
+        <LatestEpisodeBlock episode-short="They went in, but never came back out..." episode-chapter="Cumbria Chapter" episode-title="Episode 1 - Something Scary"></LatestEpisodeBlock>
     </div>
 </template>
 

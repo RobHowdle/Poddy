@@ -19,42 +19,62 @@
     </head>
     <body class="font-sans">
         <div id="app">
-            <header class="px-8 py-8 mb-8">
+            <header class="px-8 pt-2 mb-8">
                 <section class="justify-between">
-                    <ul class="flex justify-between">
+                    <div class="row ">
+                        <ul class="flex justify-around mb-3">
                         <li class="my-auto">
                             <h1>
-                                <router-link :to="{ name: 'home' }"><img alt="Logo" src="/images/Asset22.svg"></router-link>
+                                <router-link :to="{ name: 'home' }"><img alt="Logo" style="max-width:300px;" src="/images/Asset 22.png"></router-link>
                             </h1>
                         </li>
+                            <li class="my-auto">
+                                <a href="#">
+                                    <img src="/images/social/apple.svg" alt="Apple Podcasts" class="w-8">
+                                </a>
+                            </li>
+                            <li class="my-auto">
+                                <a href="#">
+                                    <img src="/images/social/spotify.svg" alt="Spotify" class="w-8">
+                                </a>
+                            </li>
+                            <li class="my-auto">
+                                <a href="#">
+                                    <img src="/images/social/youtube.svg" alt="Youtube" class="w-8">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {{-- <div class="mb-3 row">
+                        <ul class="flex justify-around">
+                            <li class="my-auto">
+                                <a href="#">
+                                    <img alt="Instagram" src="/images/social/instagram.svg" class="w-8">
+                                </a>
+                            </li>
+                            <li class="my-auto">
+                                <a href="#">
+                                    <img alt="Twitter" src="/images/social/twitter.svg" class="w-8">
+                                </a>
+                            </li>
+                            <li class="my-auto">
+                                <a href="#">
+                                    <img alt="Facebook" src="/images/social/facebook.svg" class="w-8">
+                                </a>
+                            </li>
+                            <li class="my-auto">
+                                <a href="#">
+                                    <img alt="Web" src="/images/social/web.svg" class="w-8">
+                                </a>
+                            </li>
+                        </ul>
+                    </div> --}}
+                    
+                    <ul class="flex justify-between">
                         <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'hosts' }">HOSTS</router-link></li>
                         <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'chapters' }">CHAPTERS</router-link></li>
                         <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'episodes' }">EPISODES</router-link></li>
-                        <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'gallery' }">GALLERY</router-link></li>
-                            <ul class="flex">
-                                <li class="justify-between my-auto bg-white">
-                                    <a href="#">
-                                        <img alt="Instagram" src="/images/social/instagram.svg" class="w-6">
-                                    </a>
-                                </li>
-                                <li class="my-auto bg-white">
-                                    <a href="#">
-                                        <img alt="Twitter" src="/images/social/twitter.svg" class="w-6">
-                                    </a>
-                                </li>
-                                <li class="my-auto bg-white">
-                                    <a href="#">
-                                        <img alt="Facebook" src="/images/social/facebook.svg" class="w-6">
-                                    </a>
-                                </li>
-                                <li class="my-auto bg-white">
-                                    <a href="#">
-                                        <img alt="Web" src="/images/social/web.svg" class="w-6">
-                                    </a>
-                                </li>
-                            </ul>
-                        <li>
-                            <div class="flex justify-center">
+                        <div class="flex justify-center">
                             <!-- Dropdown -->
                             <div x-data="{ open: false }" class="relative">
                                 <button x-on:click="open = true" class="block w-12 h-12 overflow-hidden bg-white rounded-full focus:outline-none">
@@ -85,15 +105,14 @@
                             <!-- // Dropdown Body -->
                             </div>
                             <!-- // Dropdown -->
-                            </div>
-                        </li>
+                        </div>
                     </ul>
                 </section>
             </header>
-            <div class="container">
+            <div class="container mx-auto">
+            <router-view></router-view>         
 
             </div>
-            <router-view></router-view>         
         </div>
     
         <script src="/js/app.js"></script>
