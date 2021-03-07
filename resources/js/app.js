@@ -1,20 +1,17 @@
-import Vue from 'vue';
+require('./bootstrap');
+
+import Vue from 'vue'
 import VueRouter from 'vue-router';
-import routes from './routes';
-import axios from 'axios';
-import alpinejs from 'alpinejs';
-import VIcon from 'vue-tailwind-icons';
 
-window.axios = axios;
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+import router from './router/index'
+import store from './store/index';
+import App from './App.vue'
 
-Vue.use(VueRouter);
-Vue.use(VIcon)
+Vue.use(VueRouter)
 
-Vue.use(VIcon, { set: 'outline' })
-
-let app = new Vue({
-    el:'#app',
-
-    router: new VueRouter(routes)
+const app = new Vue({
+    el: '#app',
+    router,
+    store,
+    components: { App }
 });

@@ -19,102 +19,10 @@
     </head>
     <body class="font-sans">
         <div id="app">
-            <header class="px-8 pt-2 mb-8">
-                <section class="justify-between">
-                    <div class="row ">
-                        <ul class="flex justify-around mb-3">
-                        <li class="my-auto">
-                            <h1>
-                                <router-link :to="{ name: 'home' }"><img alt="Logo" style="max-width:300px;" src="/images/Asset 22.png"></router-link>
-                            </h1>
-                        </li>
-                            <li class="my-auto">
-                                <a href="#">
-                                    <img src="/images/social/apple.svg" alt="Apple Podcasts" class="w-8">
-                                </a>
-                            </li>
-                            <li class="my-auto">
-                                <a href="#">
-                                    <img src="/images/social/spotify.svg" alt="Spotify" class="w-8">
-                                </a>
-                            </li>
-                            <li class="my-auto">
-                                <a href="#">
-                                    <img src="/images/social/youtube.svg" alt="Youtube" class="w-8">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    {{-- <div class="mb-3 row">
-                        <ul class="flex justify-around">
-                            <li class="my-auto">
-                                <a href="#">
-                                    <img alt="Instagram" src="/images/social/instagram.svg" class="w-8">
-                                </a>
-                            </li>
-                            <li class="my-auto">
-                                <a href="#">
-                                    <img alt="Twitter" src="/images/social/twitter.svg" class="w-8">
-                                </a>
-                            </li>
-                            <li class="my-auto">
-                                <a href="#">
-                                    <img alt="Facebook" src="/images/social/facebook.svg" class="w-8">
-                                </a>
-                            </li>
-                            <li class="my-auto">
-                                <a href="#">
-                                    <img alt="Web" src="/images/social/web.svg" class="w-8">
-                                </a>
-                            </li>
-                        </ul>
-                    </div> --}}
-                    
-                    <ul class="flex justify-between">
-                        <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'hosts' }">HOSTS</router-link></li>
-                        <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'chapters' }">CHAPTERS</router-link></li>
-                        <li class="my-auto text-md"><router-link class="text-white" active-class="font-bold" :to="{ name: 'episodes' }">EPISODES</router-link></li>
-                        <div class="flex justify-center">
-                            <!-- Dropdown -->
-                            <div x-data="{ open: false }" class="relative">
-                                <button x-on:click="open = true" class="block w-12 h-12 overflow-hidden bg-white rounded-full focus:outline-none">
-                                    <img class="object-cover w-full h-full" src="/images/social/user.svg" alt="avatar">
-                                </button>
-                                <!-- Dropdown Body -->
-                                <div x-show.transition="open" x-on:click.away="open = false" class="absolute right-0 w-40 py-2 mt-2 bg-white border rounded shadow-xl">
-                                    @if (Route::has('login'))
-                                        <div class="">
-                                            @auth
-                                                <a href="{{ url('/home') }}" class="block px-4 py-2 text-gray-900 transition-colors duration-200 rounded text-normal hover:bg-purple-500 hover:text-white">Home</a>
-                                            @else
-                                                <a href="{{ route('login') }}" class="block px-4 py-2 text-gray-900 transition-colors duration-200 rounded text-normal hover:bg-purple-500 hover:text-white">Log in</a>
-
-                                                @if (Route::has('register'))
-                                                    <a href="{{ route('register') }}" class="block px-4 py-2 text-gray-900 transition-colors duration-200 rounded text-normal hover:bg-purple-500 hover:text-white">Register</a>
-                                                @endif
-                                            @endauth
-                                        </div>
-                                    @endif                                           
-                                <div class="py-2">
-                                    <hr>
-                                </div>
-                                <a href="#" class="block px-4 py-2 text-gray-900 transition-colors duration-200 rounded text-normal hover:bg-purple-500 hover:text-white">    
-                                Logout
-                                </a>
-                            </div>
-                            <!-- // Dropdown Body -->
-                            </div>
-                            <!-- // Dropdown -->
-                        </div>
-                    </ul>
-                </section>
-            </header>
-            <div class="container mx-auto">
-            <router-view></router-view>         
-
+            <app></app>
             </div>
         </div>
     
-        <script src="/js/app.js"></script>
+        <script src="{{ mix('/js/app.js') }}"></script>
     </body>
 </html>
