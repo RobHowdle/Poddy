@@ -19,6 +19,7 @@ class CreateChaptersTable extends Migration
             $table->longText('description');
             $table->string('logo_path');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

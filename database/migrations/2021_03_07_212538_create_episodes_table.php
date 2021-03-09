@@ -23,6 +23,7 @@ class CreateEpisodesTable extends Migration
             $table->boolean('explicit');
             $table->string('url');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('chapters_id')->references('id')->on('chapters');
             $table->foreign('users_id')->references('id')->on('users');

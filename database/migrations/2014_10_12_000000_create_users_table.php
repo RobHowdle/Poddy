@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->boolean('is_host');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

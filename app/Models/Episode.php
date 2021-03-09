@@ -9,4 +9,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Episode extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $table = 'episodes';
+
+    protected $fillable = [
+        'chapters_id',
+        'users_id',
+        'title',
+        'short_description',
+        'long_description',
+        'explicit',
+        'url'
+    ];
+
+    public function chapter()
+    {
+        return $this->belongsTo(Chapter::class);
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

@@ -17,6 +17,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    protected $table = 'users';
+     
     protected $fillable = [
         'name',
         'email',
@@ -42,4 +45,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function chapter()
+    {
+        return $this->hasOneThrough(Chapter::class, Episode::class);
+    }
+
+    public function episode()
+    {
+        return $this->hasManyThrough(Episode::class, Chapter::class);
+    }
 }
