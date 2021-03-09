@@ -15,8 +15,8 @@ class CreateEpisodesTable extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('chapters_id');
-            $table->unsignedBigInteger('users_id');
+            $table->unsignedBigInteger('chapter_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('short_description');
             $table->string('long_description');
@@ -25,8 +25,8 @@ class CreateEpisodesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('chapters_id')->references('id')->on('chapters');
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('chapter_id')->references('id')->on('chapters');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

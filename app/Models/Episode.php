@@ -13,8 +13,8 @@ class Episode extends Model
     protected $table = 'episodes';
 
     protected $fillable = [
-        'chapters_id',
-        'users_id',
+        'chapter_id',
+        'user_id',
         'title',
         'short_description',
         'long_description',
@@ -29,6 +29,6 @@ class Episode extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }
