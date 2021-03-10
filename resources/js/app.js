@@ -1,17 +1,21 @@
 require('./bootstrap');
 
-import Vue from 'vue'
-import VueRouter from 'vue-router';
+// Import modules...
+import { createApp, h } from 'vue';
+import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
+import { InertiaProgress } from '@inertiajs/progress';
 
-import router from './router/index'
-import store from './store/index';
-import App from './App.vue'
+const el = document.getElementById('app');
 
-Vue.use(VueRouter)
+createApp({
+    render: () =>
+        h(InertiaApp, {
+            initialPage: JSON.parse(el.dataset.page),
+            resolveComponent: (name) => require(`./Pages/${name}`).default,
+        }),
+})
+    .mixin({ methods: { route } })
+    .use(InertiaPlugin)
+    .mount(el);
 
-const app = new Vue({
-    el: '#app',
-    router,
-    store,
-    components: { App }
-});
+InertiaProgress.init({ color: '#4B5563' });
