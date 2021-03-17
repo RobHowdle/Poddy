@@ -31,18 +31,34 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 return Inertia::render('Dashboard');
 })->name('dashboard');
 
+
+
+
+
 // Episodes
 Route::get('/episodes', [EpisodesController::class, 'index'])
     ->name('episodes');
 
 Route::get('/list/episodes', [EpisodesController::class, 'latestEpisode']);
     
+Route::get('/episodes/create', [EpisodesController::class, 'create'])
+    ->name('episode-create');
+
 Route::get('/episodes/{id}/listen', [EpisodesController::class, 'show'])
     ->name('episode-listen');
+
+
+
 
 // Chapters
 Route::get('/chapters', [ChaptersController::class, 'index'])
     ->name('chapters');
+
+Route::get('/chapters/create', [ChaptersController::class, 'create'])
+    ->name('chapter-create');
+
+
+
 
 // Players
 Route::get('/apple-player', [PlayerController::class, 'applePlayer'])
