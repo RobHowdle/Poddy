@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EpisodesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/episodes', 'EpisodesController@index');
+Route::get('/list/episodes', 'EpisodesController@latestEpisode');
+Route::get('/list/episode', 'EpisodesController@show');
+Route::get('/list/chapters', 'ChaptersController@index');

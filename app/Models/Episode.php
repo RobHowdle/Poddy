@@ -31,4 +31,14 @@ class Episode extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeYExplicit($model)
+    {
+        return $model->where('explicit', 1);
+    }
+
+    public function scopeNExplicit($model)
+    {
+        return $model->where('explicit', 1);
+    }
 }

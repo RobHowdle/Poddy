@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_hot'
     ];
 
     /**
@@ -58,4 +59,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function chapter()
+    {
+        return $this->hasOneThrough(Chapter::class, Episode::class);
+    }
+    public function episode()
+    {
+        return $this->hasManyThrough(Episode::class, Chapter::class);
+    }
 }

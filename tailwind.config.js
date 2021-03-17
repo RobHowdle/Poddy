@@ -13,8 +13,14 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                rakkas: ['Rakkas', 'cursive'],
             },
-        },
+            colors: {
+                green: {
+                    irish: '#1C9962',
+                }
+            }
+        }
     },
 
     variants: {
