@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ChaptersController;
 use App\Http\Controllers\EpisodesController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,10 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::post('logout', [LoginController::class, 'logout'])
+->name('logout');
+
 // Dashboard
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 return Inertia::render('Dashboard');
@@ -56,6 +61,7 @@ Route::get('/chapters', [ChaptersController::class, 'index'])
 
 Route::get('/chapters/create', [ChaptersController::class, 'create'])
     ->name('chapter-create');
+Route::post('/chapters/store', [ChaptersController::class, 'store']);
 
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Chapter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ChaptersController extends Controller
 {
@@ -38,7 +39,22 @@ class ChaptersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required'],
+            'description' => ['required'],
+            'host' => ['required'],
+            // 'chapter_logo' => ['required'],
+        ]);
+
+        $chapter = Chapter::create(
+            $request->only(
+                'name',
+                'description',
+                'host',
+                // 'chapter_logo'
+            )
+        );
+        return Redirect::route('chapters', $chapter);
     }
 
     /**

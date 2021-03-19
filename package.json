@@ -37,6 +37,7 @@
     "dependencies": {
         "@inertiajs/inertia-vue": "^0.5.5",
         "alpinejs": "^2.8.0",
+        "moment": "^2.29.1",
         "tailwindcss": "^2.0.3",
         "vue-audio-visual": "^2.2.2",
         "vue-axios": "^3.2.4",
