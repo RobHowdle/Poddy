@@ -7,7 +7,7 @@
     <div>
       <div class="grid grid-cols-3 gap-5 p-10 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3">
         <div class="w-full lg:max-w-full lg:flex" v-for="episode in episodes" :key="episode.id">
-          <div class="flex-none h-48 p-4 overflow-hidden text-center bg-cover rounded-t lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-l" id="chapterLogos" v-bind:style="{ 'background-image': 'url(' + episode.chapter.logo_path + ')' }" alt="Logo"></div>
+          <div class="flex-none h-48 p-4 overflow-hidden text-center bg-cover rounded-t lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-l" id="chapterLogos" v-bind:style="{ 'background-image': 'url(' + '/images/chapter_logos/' + episode.chapter.logo_path + ')' }" alt="Logo"></div>
           <div class="flex flex-col justify-between w-full p-4 leading-normal bg-white border-b border-l border-r border-gray-400 rounded-b lg:border-l-0 lg:border-t lg:border-gray-400 lg:rounded-b-none lg:rounded-r">
             <div class="mb-8">
               <p class="flex items-center text-sm text-gray-600">

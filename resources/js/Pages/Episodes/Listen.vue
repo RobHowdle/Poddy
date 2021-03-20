@@ -5,7 +5,7 @@
     <div class="py-12">
       <div class="grid grid-cols-2 gap-4 text-white" v-for="episode in episodes" :key="episode.id">
         <div class="flex justify-end p-6">
-          <img v-bind:src="episode.chapter.logo_path" alt="Chapter Logo" class="my-auto h-70 w-80" />
+          <img v-bind:src="'/images/chapter_logos/' + episode.chapter.logo_path" alt="Chapter Logo" class="my-auto h-70 w-80" />
         </div>
 
         <div class="flex p-6 justify-left">

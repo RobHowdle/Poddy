@@ -94,7 +94,7 @@ class EpisodesController extends Controller
     public function latestEpisode()
     {
         return response()->json(Episode::with('chapter')
-            ->orderBy('created_at', 'ASC')
+            ->orderBy('created_at', 'desc')
             ->take(1)
             ->get()
         );

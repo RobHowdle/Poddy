@@ -15,10 +15,15 @@ class CreateChaptersTable extends Migration
     {
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')
+                    ->forgein('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->nullable();
             $table->string('name');
             $table->longText('description');
-            $table->string('logo_thin_path');
             $table->string('logo_path');
+            $table->string('logo_thin_path');
             $table->timestamps();
             $table->softDeletes();
         });

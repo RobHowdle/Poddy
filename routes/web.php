@@ -61,7 +61,8 @@ Route::get('/chapters', [ChaptersController::class, 'index'])
 
 Route::get('/chapters/create', [ChaptersController::class, 'create'])
     ->name('chapter-create');
-Route::post('/chapters/store', [ChaptersController::class, 'store']);
+Route::post('/chapters/store', [ChaptersController::class, 'store'])
+    ->name('chapter-store');
 
 
 

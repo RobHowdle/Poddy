@@ -6,7 +6,7 @@
           <div class="md:flex">
             <h2 class="mb-6 text-sm tracking-wide uppercase md:w-1/3 sm:text-lg">Create New Chapter</h2>
           </div>
-          <form @submit.prevent="form.post('/chapters/store')">
+          <form @submit.prevent="store" enctype="multipart/form-data" id="newChapter" name="newChapter">
             <div class="mb-8 md:flex">
               <div class="md:w-1/3">
                 <legend class="text-sm tracking-wide uppercase">Chapter Name</legend>
@@ -14,8 +14,7 @@
               </div>
               <div class="mt-2 md:flex-1 mb:mt-0 md:px-3">
                 <div class="mb-4">
-                  <input class="w-full p-4 border-0 shadow-inner" type="text" name="name" v-model="form.name" placeholder="Death Star Chapter" />
-                  <div v-if="errors.title">{{ errors.title }}</div>
+                  <input class="w-full p-4 border-0 shadow-inner" type="text" id="name" v-model="form.name" :error="form.errors.name" placeholder="Death Star Chapter" />
                 </div>
               </div>
             </div>
@@ -26,8 +25,7 @@
               </div>
               <div class="mt-2 md:flex-1 mb:mt-0 md:px-3">
                 <div class="mb-4">
-                  <input class="w-full p-4 border-0 shadow-inner" type="text" name="host" v-model="form.host" placeholder="Darth Vader" />
-                  <div v-if="errors.host">{{ errors.host }}</div>
+                  <input class="w-full p-4 border-0 shadow-inner" type="text" id="user_id" v-model="form.user_id" :error="form.errors.user_id" placeholder="Darth Vader" />
                 </div>
               </div>
             </div>
@@ -38,20 +36,32 @@
                 <p class="text-xs font-light text-red">A description of the chapter and what listeners can expect to hear from it.</p>
               </div>
               <div class="mt-2 md:flex-1 mb:mt-0 md:px-3">
-                <textarea class="w-full p-4 border-0 shadow-inner" v-model="form.description" placeholder="Once a powerful weapon that is susceptible to any form of attack, now it litters the galaxy echoing screams of the millions of souls that were lost... " rows="6"></textarea>
-                <div v-if="errors.description">{{ errors.description }}</div>
+                <input class="w-full p-4 border-0 shadow-inner" type="text" id="description" v-model="form.description" :error="form.errors.description" placeholder="Once a powerful weapon that is susceptible to any form of attack, now it litters the galaxy echoing screams of the millions of souls that were lost... " />
               </div>
+            </div>
+            <div class="mb-6 md:flex">
+              <div class="md:w-1/3">
+                <legend class="text-sm tracking-wide uppercase">Established Date</legend>
+                <p class="text-xs font-light text-red">The date this chapter officially joined the show.</p>
+              </div>
+              <div class="mt-2 md:flex-1 mb:mt-0 md:px-3"></div>
             </div>
             <div class="mb-6 md:flex">
               <div class="md:w-1/3">
                 <legend class="text-sm tracking-wide uppercase">Chapter Logo</legend>
               </div>
-              <!-- <div class="px-3 text-center md:flex-1">
+              <div class="px-3 text-center md:flex-1">
                 <div class="relative mx-auto button bg-gold hover:bg-gold-dark text-cream cusor-pointer">
-                  <input class="absolute opacity-0 pin-x pin-y" type="file" name="chapter_logo" v-model="form.chapter_logo" />
+                  <input @change="selectFile" id="logo" type="file" accept="image/*" class="w-full pb-8 pr-6 lg:w-1/2" />
                   Add Chapter Image
                 </div>
-              </div> -->
+              </div>
+              <div class="px-3 text-center md:flex-1">
+                <div class="relative mx-auto button bg-gold hover:bg-gold-dark text-cream cusor-pointer">
+                  <input @change="selectThinFile" id="thinLogo" type="file" accept="image/*" class="w-full pb-8 pr-6 lg:w-1/2" />
+                  Add Diet Chapter Image
+                </div>
+              </div>
             </div>
             <div class="mb-6 border border-b-0 md:flex border-t-1 border-x-0 border-cream-dark">
               <div class="px-3 text-center md:flex-1 md:text-right">
@@ -68,26 +78,42 @@
 
 <script>
 import AppLayout from "../../Layouts/AppLayout.vue"
-export default {
-  props: {
-    errors: Object,
-  },
+import FileInput from "../../Jetstream/FileInput.vue"
 
-  components: { AppLayout },
+export default {
+  components: { AppLayout, FileInput },
+  remember: "form",
 
   data() {
     return {
       form: this.$inertia.form({
+        _method: "post",
         name: null,
-        host: null,
+        user_id: null,
         description: null,
-        // chapter_logo: null,
+        logo: null,
+        thinLogo: null,
       }),
     }
   },
   methods: {
-    submit() {
-      this.$inertia.post("/chapters/store", this.form)
+    selectFile(event) {
+      this.form.logo = event.target.files[0]
+    },
+    selectThinFile(event) {
+      this.form.thinLogo = event.target.files[0]
+    },
+    store() {
+      this.form.post(this.route("chapter-store"), {
+        onSuccess: () => {
+          // Handle success event
+          console.log("posted")
+        },
+        onError: (errors) => {
+          // Handle validation errors
+          console.log(errors)
+        },
+      })
     },
   },
 }
@@ -105,9 +131,9 @@ textarea:focus {
   outline: none;
 }
 
-.button {
-  @apply .inline-block .mt-6 .rounded .shadow .py-2 .px-4 .no-underline .border-0;
-}
+// .button {
+//   @apply .inline-block .mt-6 .rounded .shadow .py-2 .px-4 .no-underline .border-0;
+// }
 
 /* @apply doesn't work on code pen. */
 /* The above renders out to: */
@@ -142,9 +168,9 @@ textarea:focus {
   border-bottom: 0;
 }
 
-.hover\:shadow:hover {
-  @apply .shadow;
-}
+// .hover\:shadow:hover {
+//   @apply .shadow;
+// }
 
 // Custom stuffs from my tailwind.js
 .bg-brick-lightest,

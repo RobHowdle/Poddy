@@ -24,7 +24,8 @@ class ChapterFactory extends Factory
         return [
             'name' => $this->faker->city . " Chapter",
             'description' => $this->faker->text($maxNbChars = 30),
-            'logo_path' => $this->faker->imageUrl($width = 640, $height = 480)
+            'logo_path' => $this->faker->imageUrl($width = 640, $height = 480),
+            'logo_thin_path' => $this->faker->imageUrl($width = 640, $height = 480)
         ];
     }
 }

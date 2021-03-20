@@ -17863,6 +17863,55 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/FileInput.vue?vue&type=script&lang=js":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/FileInput.vue?vue&type=script&lang=js ***!
+  \**************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    value: File,
+    label: String,
+    accept: String,
+    errors: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    }
+  },
+  watch: {
+    value: function value(_value) {
+      if (!_value) {
+        this.$refs.file.value = "";
+      }
+    }
+  },
+  methods: {
+    filesize: function filesize(size) {
+      var i = Math.floor(Math.log(size) / Math.log(1024));
+      return (size / Math.pow(1024, i)).toFixed(2) * 1 + " " + ["B", "kB", "MB", "GB", "TB"][i];
+    },
+    browse: function browse() {
+      this.$refs.file.click();
+    },
+    change: function change(e) {
+      this.$emit("input", e.target.files[0]);
+    },
+    remove: function remove() {
+      this.$emit("input", null);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/FormSection.vue?vue&type=script&lang=js":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/FormSection.vue?vue&type=script&lang=js ***!
@@ -18833,27 +18882,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/AppLayout.vue */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Jetstream_FileInput_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Jetstream/FileInput.vue */ "./resources/js/Jetstream/FileInput.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    errors: Object
-  },
   components: {
-    AppLayout: _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__.default
+    AppLayout: _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+    FileInput: _Jetstream_FileInput_vue__WEBPACK_IMPORTED_MODULE_1__.default
   },
+  remember: "form",
   data: function data() {
     return {
       form: this.$inertia.form({
+        _method: "post",
         name: null,
-        host: null,
-        description: null // chapter_logo: null,
-
+        user_id: null,
+        description: null,
+        logo: null,
+        thinLogo: null
       })
     };
   },
   methods: {
-    submit: function submit() {
-      this.$inertia.post("/chapters/store", this.form);
+    selectFile: function selectFile(event) {
+      this.form.logo = event.target.files[0];
+    },
+    selectThinFile: function selectThinFile(event) {
+      this.form.thinLogo = event.target.files[0];
+    },
+    store: function store() {
+      this.form.post(this.route("chapter-store"), {
+        onSuccess: function onSuccess() {
+          // Handle success event
+          console.log("posted");
+        },
+        onError: function onError(errors) {
+          // Handle validation errors
+          console.log(errors);
+        }
+      });
     }
   }
 });
@@ -20250,6 +20317,83 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/FileInput.vue?vue&type=template&id=71f8672a":
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/FileInput.vue?vue&type=template&id=71f8672a ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  key: 0,
+  "class": "form-label"
+};
+var _hoisted_2 = {
+  key: 0,
+  "class": "p-2"
+};
+var _hoisted_3 = {
+  key: 1,
+  "class": "flex items-center justify-between p-2"
+};
+var _hoisted_4 = {
+  "class": "flex-1 pr-1"
+};
+var _hoisted_5 = {
+  "class": "text-xs text-gray-500"
+};
+var _hoisted_6 = {
+  key: 1,
+  "class": "form-error"
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [$props.label ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("label", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.label) + ":", 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    "class": ["p-0 form-input", {
+      error: $props.errors.length
+    }]
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    ref: "file",
+    type: "file",
+    accept: $props.accept,
+    "class": "hidden",
+    onChange: _cache[1] || (_cache[1] = function () {
+      return $options.change && $options.change.apply($options, arguments);
+    })
+  }, null, 40
+  /* PROPS, HYDRATE_EVENTS */
+  , ["accept"]), !$props.value ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    type: "button",
+    "class": "px-4 py-1 text-xs font-medium text-white bg-gray-500 rounded-sm hover:bg-gray-700",
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.browse && $options.browse.apply($options, arguments);
+    })
+  }, "Browse")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.value.name) + " ", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_5, "(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.filesize($props.value.size)) + ")", 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    type: "button",
+    "class": "px-4 py-1 text-xs font-medium text-white bg-gray-500 rounded-sm hover:bg-gray-700",
+    onClick: _cache[3] || (_cache[3] = function () {
+      return $options.remove && $options.remove.apply($options, arguments);
+    })
+  }, "Remove")]))], 2
+  /* CLASS */
+  ), $props.errors.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.errors[0]), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/FormSection.vue?vue&type=template&id=68c2427d":
 /*!********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/FormSection.vue?vue&type=template&id=68c2427d ***!
@@ -20553,7 +20697,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "grid grid-flow-col grid-cols-2 gap-4 pt-4 bg-black",
       key: episode.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-      src: episode.chapter.logo_path,
+      src: '/images/chapter_logos/' + episode.chapter.logo_path,
       alt: "Chapter Logo",
       "class": "w-70 h-80"
     }, null, 8
@@ -22877,8 +23021,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
-  "class": "p-3 text-xl font-semibold text-center text-white bg-black font-rakkas"
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+  "class": "p-3 text-3xl font-semibold text-center text-white bg-black font-rakkas"
 }, "The UKGS Family", -1
 /* HOISTED */
 );
@@ -22887,7 +23031,7 @@ var _hoisted_2 = {
   "class": "py-12"
 };
 var _hoisted_3 = {
-  "class": "flex flex-wrap items-center justify-center w-full min-h-screen gap-3 py-5 bg-image"
+  "class": "flex flex-wrap items-center justify-center w-full gap-3 py-5 bg-image"
 };
 var _hoisted_4 = {
   "class": "w-full pb-3 mb-3 border-b border-white border-1"
@@ -22923,7 +23067,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(chapter.name), 1
         /* TEXT */
         )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" body "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-          src: chapter.logo_thin_path,
+          src: '/images/chapter_logos/' + chapter.logo_thin_path,
           alt: "Chapter Thin Logo",
           "class": "object-cover w-full h-48 mb-2"
         }, null, 8
@@ -22999,13 +23143,10 @@ var _hoisted_7 = {
   "class": "mb-4"
 };
 var _hoisted_8 = {
-  key: 0
-};
-var _hoisted_9 = {
   "class": "mb-8 md:flex"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "md:w-1/3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", {
   "class": "text-sm tracking-wide uppercase"
@@ -23015,20 +23156,17 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_11 = {
+var _hoisted_10 = {
   "class": "mt-2 md:flex-1 mb:mt-0 md:px-3"
 };
-var _hoisted_12 = {
+var _hoisted_11 = {
   "class": "mb-4"
 };
-var _hoisted_13 = {
-  key: 0
-};
-var _hoisted_14 = {
+var _hoisted_12 = {
   "class": "mb-6 md:flex"
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "md:w-1/3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", {
   "class": "text-sm tracking-wide uppercase"
@@ -23038,14 +23176,57 @@ var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_16 = {
+var _hoisted_14 = {
   "class": "mt-2 md:flex-1 mb:mt-0 md:px-3"
 };
-var _hoisted_17 = {
-  key: 0
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"mb-6 md:flex\" data-v-1db929c2><div class=\"md:w-1/3\" data-v-1db929c2><legend class=\"text-sm tracking-wide uppercase\" data-v-1db929c2>Established Date</legend><p class=\"text-xs font-light text-red\" data-v-1db929c2>The date this chapter officially joined the show.</p></div><div class=\"mt-2 md:flex-1 mb:mt-0 md:px-3\" data-v-1db929c2></div></div>", 1);
+
+var _hoisted_16 = {
+  "class": "mb-6 md:flex"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"mb-6 md:flex\" data-v-1db929c2><div class=\"md:w-1/3\" data-v-1db929c2><legend class=\"text-sm tracking-wide uppercase\" data-v-1db929c2>Chapter Logo</legend></div><!-- &lt;div class=&quot;px-3 text-center md:flex-1&quot;&gt;\r\n                &lt;div class=&quot;relative mx-auto button bg-gold hover:bg-gold-dark text-cream cusor-pointer&quot;&gt;\r\n                  &lt;input class=&quot;absolute opacity-0 pin-x pin-y&quot; type=&quot;file&quot; name=&quot;chapter_logo&quot; v-model=&quot;form.chapter_logo&quot; /&gt;\r\n                  Add Chapter Image\r\n                &lt;/div&gt;\r\n              &lt;/div&gt; --></div><div class=\"mb-6 border border-b-0 md:flex border-t-1 border-x-0 border-cream-dark\" data-v-1db929c2><div class=\"px-3 text-center md:flex-1 md:text-right\" data-v-1db929c2><input type=\"hidden\" name=\"sponsor\" value=\"0\" data-v-1db929c2><input class=\"button text-cream-lighter bg-brick hover:bg-brick-dark\" type=\"submit\" value=\"Create Chapter\" data-v-1db929c2></div></div>", 2);
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "md:w-1/3"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", {
+  "class": "text-sm tracking-wide uppercase"
+}, "Chapter Logo")], -1
+/* HOISTED */
+);
+
+var _hoisted_18 = {
+  "class": "px-3 text-center md:flex-1"
+};
+var _hoisted_19 = {
+  "class": "relative mx-auto button bg-gold hover:bg-gold-dark text-cream cusor-pointer"
+};
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Chapter Image ");
+
+var _hoisted_21 = {
+  "class": "px-3 text-center md:flex-1"
+};
+var _hoisted_22 = {
+  "class": "relative mx-auto button bg-gold hover:bg-gold-dark text-cream cusor-pointer"
+};
+
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Diet Chapter Image ");
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "mb-6 border border-b-0 md:flex border-t-1 border-x-0 border-cream-dark"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "px-3 text-center md:flex-1 md:text-right"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  type: "hidden",
+  name: "sponsor",
+  value: "0"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  "class": "button text-cream-lighter bg-brick hover:bg-brick-dark",
+  type: "submit",
+  value: "Create Chapter"
+})])], -1
+/* HOISTED */
+);
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -23055,45 +23236,66 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_layout, null, {
     "default": _withId(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
-        onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-          return $data.form.post('/chapters/store');
-        }, ["prevent"]))
+        onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+          return $options.store && $options.store.apply($options, arguments);
+        }, ["prevent"])),
+        enctype: "multipart/form-data",
+        id: "newChapter",
+        name: "newChapter"
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         "class": "w-full p-4 border-0 shadow-inner",
         type: "text",
-        name: "name",
+        id: "name",
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return $data.form.name = $event;
         }),
+        error: $data.form.errors.name,
         placeholder: "Death Star Chapter"
-      }, null, 512
-      /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]]), $props.errors.title ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.errors.title), 1
-      /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      }, null, 8
+      /* PROPS */
+      , ["error"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         "class": "w-full p-4 border-0 shadow-inner",
         type: "text",
-        name: "host",
+        id: "user_id",
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-          return $data.form.host = $event;
+          return $data.form.user_id = $event;
         }),
+        error: $data.form.errors.user_id,
         placeholder: "Darth Vader"
-      }, null, 512
-      /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.host]]), $props.errors.host ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.errors.host), 1
-      /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
+      }, null, 8
+      /* PROPS */
+      , ["error"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.user_id]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         "class": "w-full p-4 border-0 shadow-inner",
+        type: "text",
+        id: "description",
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $data.form.description = $event;
         }),
-        placeholder: "Once a powerful weapon that is susceptible to any form of attack, now it litters the galaxy echoing screams of the millions of souls that were lost... ",
-        rows: "6"
-      }, null, 512
-      /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description]]), $props.errors.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.errors.description), 1
-      /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _hoisted_18], 32
+        error: $data.form.errors.description,
+        placeholder: "Once a powerful weapon that is susceptible to any form of attack, now it litters the galaxy echoing screams of the millions of souls that were lost... "
+      }, null, 8
+      /* PROPS */
+      , ["error"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description]])])]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+        onChange: _cache[4] || (_cache[4] = function () {
+          return $options.selectFile && $options.selectFile.apply($options, arguments);
+        }),
+        id: "logo",
+        type: "file",
+        accept: "image/*",
+        "class": "w-full pb-8 pr-6 lg:w-1/2"
+      }, null, 32
+      /* HYDRATE_EVENTS */
+      ), _hoisted_20])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+        onChange: _cache[5] || (_cache[5] = function () {
+          return $options.selectThinFile && $options.selectThinFile.apply($options, arguments);
+        }),
+        id: "thinLogo",
+        type: "file",
+        accept: "image/*",
+        "class": "w-full pb-8 pr-6 lg:w-1/2"
+      }, null, 32
+      /* HYDRATE_EVENTS */
+      ), _hoisted_23])])]), _hoisted_24], 32
       /* HYDRATE_EVENTS */
       )])])])];
     }),
@@ -23221,7 +23423,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "flex-none h-48 p-4 overflow-hidden text-center bg-cover rounded-t lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-l",
           id: "chapterLogos",
           style: {
-            'background-image': 'url(' + episode.chapter.logo_path + ')'
+            'background-image': 'url(' + '/images/chapter_logos/' + episode.chapter.logo_path + ')'
           },
           alt: "Logo"
         }, null, 4
@@ -23361,7 +23563,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "grid grid-cols-2 gap-4 text-white",
           key: episode.id
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-          src: episode.chapter.logo_path,
+          src: '/images/chapter_logos/' + episode.chapter.logo_path,
           alt: "Chapter Logo",
           "class": "my-auto h-70 w-80"
         }, null, 8
@@ -23403,9 +23605,55 @@ var _withId = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.withScopeId)("dat
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-1b3d97cd");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
-  "class": "text-white"
-}, "Episode Creation")], -1
+var _hoisted_1 = {
+  "class": "flex flex-col flex-1 md:p-0 lg:pt-8 lg:px-8 md:ml-24"
+};
+var _hoisted_2 = {
+  "class": "p-4 shadow bg-cream-lighter"
+};
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "md:flex"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
+  "class": "mb-6 text-sm tracking-wide uppercase md:w-1/3 sm:text-lg"
+}, "Create New Chapter")], -1
+/* HOISTED */
+);
+
+var _hoisted_4 = {
+  "class": "mb-8 md:flex"
+};
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "md:w-1/3"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", {
+  "class": "text-sm tracking-wide uppercase"
+}, "Chapter Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+  "class": "text-xs font-light text-red"
+}, "This should be unique to the location of the host.")], -1
+/* HOISTED */
+);
+
+var _hoisted_6 = {
+  "class": "mt-2 md:flex-1 mb:mt-0 md:px-3"
+};
+var _hoisted_7 = {
+  "class": "mb-4"
+};
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "mb-6 border border-b-0 md:flex border-t-1 border-x-0 border-cream-dark"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "px-3 text-center md:flex-1 md:text-right"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  type: "hidden",
+  name: "sponsor",
+  value: "0"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  "class": "button text-cream-lighter bg-brick hover:bg-brick-dark",
+  type: "submit",
+  value: "Create Chapter"
+})])], -1
 /* HOISTED */
 );
 
@@ -23416,7 +23664,27 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_layout, null, {
     "default": _withId(function () {
-      return [_hoisted_1];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+        onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+          return _ctx.store && _ctx.store.apply(_ctx, arguments);
+        }, ["prevent"])),
+        enctype: "multipart/form-data",
+        id: "newChapter",
+        name: "newChapter"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+        "class": "w-full p-4 border-0 shadow-inner",
+        type: "text",
+        id: "name",
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return _ctx.form.name = $event;
+        }),
+        error: _ctx.form.errors.name,
+        placeholder: "Death Star Chapter"
+      }, null, 8
+      /* PROPS */
+      , ["error"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.form.name]])])])]), _hoisted_8], 32
+      /* HYDRATE_EVENTS */
+      )])])])];
     }),
     _: 1
     /* STABLE */
@@ -24789,6 +25057,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Import
 
 
 
+_inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__.InertiaProgress.init({
+  color: '#4B5563'
+});
 var el = document.getElementById('app');
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   render: function render() {
@@ -24807,9 +25078,6 @@ var el = document.getElementById('app');
     route: route
   }
 }).use(_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.plugin).use(vue_audio_visual__WEBPACK_IMPORTED_MODULE_3__.default).mount(el);
-_inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__.InertiaProgress.init({
-  color: '#4B5563'
-});
 
 /***/ }),
 
@@ -29339,7 +29607,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".shadow-light[data-v-1db929c2],\n.hover\\:shadow-light[data-v-1db929c2]:hover {\n  text-shadow: 1px 1px 0 #f4f4f0, 2px 2px 0 rgba(81, 76, 77, 0.3);\n}\ninput[data-v-1db929c2]:focus,\ntextarea[data-v-1db929c2]:focus {\n  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);\n  outline: none;\n}\n.button[data-v-1db929c2] {\n@apply .inline-block .mt-6 .rounded .shadow .py-2 .px-4 .no-underline .border-0;\n}\n\n/* @apply doesn't work on code pen. */\n/* The above renders out to: */\n.button[data-v-1db929c2] {\n  display: inline-block;\n  margin-top: 1.5rem;\n  border-radius: 0.25rem;\n  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  text-decoration: none;\n  border: 0;\n}\n.overflow-y-hidden[data-v-1db929c2] {\n  overflow-y: hidden;\n}\n.overflow-x-hidden[data-v-1db929c2] {\n  overflow-x: hidden;\n}\n.border-x-0[data-v-1db929c2] {\n  border-left: 0;\n  border-right: 0;\n}\n.border-y-0[data-v-1db929c2] {\n  border-top: 0;\n  border-bottom: 0;\n}\n.hover\\:shadow[data-v-1db929c2]:hover {\n@apply .shadow;\n}\n.bg-brick-lightest[data-v-1db929c2],\n.hover\\:bg-brick-lightest[data-v-1db929c2]:hover {\n  background-color: #dbcdcc;\n}\n.bg-brick-lighter[data-v-1db929c2],\n.hover\\:bg-brick-lighter[data-v-1db929c2]:hover {\n  background-color: #c2a3a0;\n}\n.bg-brick-light[data-v-1db929c2],\n.hover\\:bg-brick-light[data-v-1db929c2]:hover {\n  background-color: #aa7f7b;\n}\n.bg-brick[data-v-1db929c2],\n.hover\\:bg-brick[data-v-1db929c2]:hover {\n  background-color: #93625b;\n}\n.bg-brick-dark[data-v-1db929c2],\n.hover\\:bg-brick-dark[data-v-1db929c2]:hover {\n  background-color: #75413f;\n}\n.bg-brick-darker[data-v-1db929c2],\n.hover\\:bg-brick-darker[data-v-1db929c2]:hover {\n  background-color: #421e1b;\n}\n.bg-brick-darkest[data-v-1db929c2],\n.hover\\:bg-brick-darkest[data-v-1db929c2]:hover {\n  background-color: #260d0c;\n}\n.bg-cream-lightest[data-v-1db929c2],\n.hover\\:bg-cream-lightest[data-v-1db929c2]:hover {\n  background-color: #fff;\n}\n.bg-cream-lighter[data-v-1db929c2],\n.hover\\:bg-cream-lighter[data-v-1db929c2]:hover {\n  background-color: #f9f9fa;\n}\n.bg-cream-light[data-v-1db929c2],\n.hover\\:bg-cream-light[data-v-1db929c2]:hover {\n  background-color: #f4f4f5;\n}\n.bg-cream[data-v-1db929c2],\n.hover\\:bg-cream[data-v-1db929c2]:hover {\n  background-color: #f4f4f0;\n}\n.bg-cream-dark[data-v-1db929c2],\n.hover\\:bg-cream-dark[data-v-1db929c2]:hover {\n  background-color: #d9d5c3;\n}\n.bg-cream-darker[data-v-1db929c2],\n.hover\\:bg-cream-darker[data-v-1db929c2]:hover {\n  background-color: #bfba99;\n}\n.bg-cream-darkest[data-v-1db929c2],\n.hover\\:bg-cream-darkest[data-v-1db929c2]:hover {\n  background-color: #a39a73;\n}\n.bg-charcoal-lightest[data-v-1db929c2],\n.hover\\:bg-charcoal-lightest[data-v-1db929c2]:hover {\n  background-color: #969696;\n}\n.bg-charcoal-lighter[data-v-1db929c2],\n.hover\\:bg-charcoal-lighter[data-v-1db929c2]:hover {\n  background-color: #7f7f7f;\n}\n.bg-charcoal-light[data-v-1db929c2],\n.hover\\:bg-charcoal-light[data-v-1db929c2]:hover {\n  background-color: #686868;\n}\n.bg-charcoal[data-v-1db929c2],\n.hover\\:bg-charcoal[data-v-1db929c2]:hover {\n  background-color: #514c4d;\n}\n.bg-charcoal-dark[data-v-1db929c2],\n.hover\\:bg-charcoal-dark[data-v-1db929c2]:hover {\n  background-color: #332b2d;\n}\n.bg-charcoal-darker[data-v-1db929c2],\n.hover\\:bg-charcoal-darker[data-v-1db929c2]:hover {\n  background-color: #1a1416;\n}\n.bg-charcoal-darkest[data-v-1db929c2],\n.hover\\:bg-charcoal-darkest[data-v-1db929c2]:hover {\n  background-color: #0c090a;\n}\n.bg-gold-lightest[data-v-1db929c2],\n.hover\\:bg-gold-lightest[data-v-1db929c2]:hover {\n  background-color: #e0e0e0;\n}\n.bg-gold-lighter[data-v-1db929c2],\n.hover\\:bg-gold-lighter[data-v-1db929c2]:hover {\n  background-color: #c9c9c9;\n}\n.bg-gold-light[data-v-1db929c2],\n.hover\\:bg-gold-light[data-v-1db929c2]:hover {\n  background-color: #b0ada7;\n}\n.bg-gold[data-v-1db929c2],\n.hover\\:bg-gold[data-v-1db929c2]:hover {\n  background-color: #989488;\n}\n.bg-gold-dark[data-v-1db929c2],\n.hover\\:bg-gold-dark[data-v-1db929c2]:hover {\n  background-color: #7c7664;\n}\n.bg-gold-darker[data-v-1db929c2],\n.hover\\:bg-gold-darker[data-v-1db929c2]:hover {\n  background-color: #635a46;\n}\n.bg-gold-darkest[data-v-1db929c2],\n.hover\\:bg-gold-darkest[data-v-1db929c2]:hover {\n  background-color: #473e2b;\n}\n.sm\\:text-brick-lightest[data-v-1db929c2],\n.sm\\:hover\\:text-brick-lightest[data-v-1db929c2]:hover {\n  color: #dbcdcc;\n}\n.sm\\:text-brick-lighter[data-v-1db929c2],\n.sm\\:hover\\:text-brick-lighter[data-v-1db929c2]:hover {\n  color: #c2a3a0;\n}\n.sm\\:text-brick-light[data-v-1db929c2],\n.sm\\:hover\\:text-brick-light[data-v-1db929c2]:hover {\n  color: #aa7f7b;\n}\n.sm\\:text-brick[data-v-1db929c2],\n.sm\\:hover\\:text-brick[data-v-1db929c2]:hover {\n  color: #93625b;\n}\n.sm\\:text-brick-dark[data-v-1db929c2],\n.sm\\:hover\\:text-brick-dark[data-v-1db929c2]:hover {\n  color: #75413f;\n}\n.sm\\:text-brick-darker[data-v-1db929c2],\n.sm\\:hover\\:text-brick-darker[data-v-1db929c2]:hover {\n  color: #421e1b;\n}\n.sm\\:text-brick-darkest[data-v-1db929c2],\n.sm\\:hover\\:text-brick-darkest[data-v-1db929c2]:hover {\n  color: #260d0c;\n}\n.sm\\:text-cream-lightest[data-v-1db929c2],\n.sm\\:hover\\:text-cream-lightest[data-v-1db929c2]:hover {\n  color: #fff;\n}\n.sm\\:text-cream-lighter[data-v-1db929c2],\n.sm\\:hover\\:text-cream-lighter[data-v-1db929c2]:hover {\n  color: #f9f9fa;\n}\n.sm\\:text-cream-light[data-v-1db929c2],\n.sm\\:hover\\:text-cream-light[data-v-1db929c2]:hover {\n  color: #f4f4f5;\n}\n.sm\\:text-cream[data-v-1db929c2],\n.sm\\:hover\\:text-cream[data-v-1db929c2]:hover {\n  color: #f4f4f0;\n}\n.sm\\:text-cream-dark[data-v-1db929c2],\n.sm\\:hover\\:text-cream-dark[data-v-1db929c2]:hover {\n  color: #d9d5c3;\n}\n.sm\\:text-cream-darker[data-v-1db929c2],\n.sm\\:hover\\:text-cream-darker[data-v-1db929c2]:hover {\n  color: #bfba99;\n}\n.sm\\:text-cream-darkest[data-v-1db929c2],\n.sm\\:hover\\:text-cream-darkest[data-v-1db929c2]:hover {\n  color: #a39a73;\n}\n.sm\\:text-charcoal-lightest[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-lightest[data-v-1db929c2]:hover {\n  color: #969696;\n}\n.sm\\:text-charcoal-lighter[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-lighter[data-v-1db929c2]:hover {\n  color: #7f7f7f;\n}\n.sm\\:text-charcoal-light[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-light[data-v-1db929c2]:hover {\n  color: #686868;\n}\n.sm\\:text-charcoal[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal[data-v-1db929c2]:hover {\n  color: #514c4d;\n}\n.sm\\:text-charcoal-dark[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-dark[data-v-1db929c2]:hover {\n  color: #332b2d;\n}\n.sm\\:text-charcoal-darker[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-darker[data-v-1db929c2]:hover {\n  color: #1a1416;\n}\n.sm\\:text-charcoal-darkest[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-darkest[data-v-1db929c2]:hover {\n  color: #0c090a;\n}\n.sm\\:text-gold-lightest[data-v-1db929c2],\n.sm\\:hover\\:text-gold-lightest[data-v-1db929c2]:hover {\n  color: #e0e0e0;\n}\n.sm\\:text-gold-lighter[data-v-1db929c2],\n.sm\\:hover\\:text-gold-lighter[data-v-1db929c2]:hover {\n  color: #c9c9c9;\n}\n.sm\\:text-gold-light[data-v-1db929c2],\n.sm\\:hover\\:text-gold-light[data-v-1db929c2]:hover {\n  color: #b0ada7;\n}\n.sm\\:text-gold[data-v-1db929c2],\n.sm\\:hover\\:text-gold[data-v-1db929c2]:hover {\n  color: #989488;\n}\n.sm\\:text-gold-dark[data-v-1db929c2],\n.sm\\:hover\\:text-gold-dark[data-v-1db929c2]:hover {\n  color: #7c7664;\n}\n.sm\\:text-gold-darker[data-v-1db929c2],\n.sm\\:hover\\:text-gold-darker[data-v-1db929c2]:hover {\n  color: #635a46;\n}\n.sm\\:text-gold-darkest[data-v-1db929c2],\n.sm\\:hover\\:text-gold-darkest[data-v-1db929c2]:hover {\n  color: #473e2b;\n}\n.md\\:text-brick-lightest[data-v-1db929c2],\n.md\\:hover\\:text-brick-lightest[data-v-1db929c2]:hover {\n  color: #dbcdcc;\n}\n.md\\:text-brick-lighter[data-v-1db929c2],\n.md\\:hover\\:text-brick-lighter[data-v-1db929c2]:hover {\n  color: #c2a3a0;\n}\n.md\\:text-brick-light[data-v-1db929c2],\n.md\\:hover\\:text-brick-light[data-v-1db929c2]:hover {\n  color: #aa7f7b;\n}\n.md\\:text-brick[data-v-1db929c2],\n.md\\:hover\\:text-brick[data-v-1db929c2]:hover {\n  color: #93625b;\n}\n.md\\:text-brick-dark[data-v-1db929c2],\n.md\\:hover\\:text-brick-dark[data-v-1db929c2]:hover {\n  color: #75413f;\n}\n.md\\:text-brick-darker[data-v-1db929c2],\n.md\\:hover\\:text-brick-darker[data-v-1db929c2]:hover {\n  color: #421e1b;\n}\n.md\\:text-brick-darkest[data-v-1db929c2],\n.md\\:hover\\:text-brick-darkest[data-v-1db929c2]:hover {\n  color: #260d0c;\n}\n.md\\:text-cream-lightest[data-v-1db929c2],\n.md\\:hover\\:text-cream-lightest[data-v-1db929c2]:hover {\n  color: #fff;\n}\n.md\\:text-cream-lighter[data-v-1db929c2],\n.md\\:hover\\:text-cream-lighter[data-v-1db929c2]:hover {\n  color: #f9f9fa;\n}\n.md\\:text-cream-light[data-v-1db929c2],\n.md\\:hover\\:text-cream-light[data-v-1db929c2]:hover {\n  color: #f4f4f5;\n}\n.md\\:text-cream[data-v-1db929c2],\n.md\\:hover\\:text-cream[data-v-1db929c2]:hover {\n  color: #f4f4f0;\n}\n.md\\:text-cream-dark[data-v-1db929c2],\n.md\\:hover\\:text-cream-dark[data-v-1db929c2]:hover {\n  color: #d9d5c3;\n}\n.md\\:text-cream-darker[data-v-1db929c2],\n.md\\:hover\\:text-cream-darker[data-v-1db929c2]:hover {\n  color: #bfba99;\n}\n.md\\:text-cream-darkest[data-v-1db929c2],\n.md\\:hover\\:text-cream-darkest[data-v-1db929c2]:hover {\n  color: #a39a73;\n}\n.md\\:text-charcoal-lightest[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-lightest[data-v-1db929c2]:hover {\n  color: #969696;\n}\n.md\\:text-charcoal-lighter[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-lighter[data-v-1db929c2]:hover {\n  color: #7f7f7f;\n}\n.md\\:text-charcoal-light[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-light[data-v-1db929c2]:hover {\n  color: #686868;\n}\n.md\\:text-charcoal[data-v-1db929c2],\n.md\\:hover\\:text-charcoal[data-v-1db929c2]:hover {\n  color: #514c4d;\n}\n.md\\:text-charcoal-dark[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-dark[data-v-1db929c2]:hover {\n  color: #332b2d;\n}\n.md\\:text-charcoal-darker[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-darker[data-v-1db929c2]:hover {\n  color: #1a1416;\n}\n.md\\:text-charcoal-darkest[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-darkest[data-v-1db929c2]:hover {\n  color: #0c090a;\n}\n.md\\:text-gold-lightest[data-v-1db929c2],\n.md\\:hover\\:text-gold-lightest[data-v-1db929c2]:hover {\n  color: #e0e0e0;\n}\n.md\\:text-gold-lighter[data-v-1db929c2],\n.md\\:hover\\:text-gold-lighter[data-v-1db929c2]:hover {\n  color: #c9c9c9;\n}\n.md\\:text-gold-light[data-v-1db929c2],\n.md\\:hover\\:text-gold-light[data-v-1db929c2]:hover {\n  color: #b0ada7;\n}\n.md\\:text-gold[data-v-1db929c2],\n.md\\:hover\\:text-gold[data-v-1db929c2]:hover {\n  color: #989488;\n}\n.md\\:text-gold-dark[data-v-1db929c2],\n.md\\:hover\\:text-gold-dark[data-v-1db929c2]:hover {\n  color: #7c7664;\n}\n.md\\:text-gold-darker[data-v-1db929c2],\n.md\\:hover\\:text-gold-darker[data-v-1db929c2]:hover {\n  color: #635a46;\n}\n.md\\:text-gold-darkest[data-v-1db929c2],\n.md\\:hover\\:text-gold-darkest[data-v-1db929c2]:hover {\n  color: #473e2b;\n}\n.lg\\:text-brick-lightest[data-v-1db929c2],\n.lg\\:hover\\:text-brick-lightest[data-v-1db929c2]:hover {\n  color: #dbcdcc;\n}\n.lg\\:text-brick-lighter[data-v-1db929c2],\n.lg\\:hover\\:text-brick-lighter[data-v-1db929c2]:hover {\n  color: #c2a3a0;\n}\n.lg\\:text-brick-light[data-v-1db929c2],\n.lg\\:hover\\:text-brick-light[data-v-1db929c2]:hover {\n  color: #aa7f7b;\n}\n.lg\\:text-brick[data-v-1db929c2],\n.lg\\:hover\\:text-brick[data-v-1db929c2]:hover {\n  color: #93625b;\n}\n.lg\\:text-brick-dark[data-v-1db929c2],\n.lg\\:hover\\:text-brick-dark[data-v-1db929c2]:hover {\n  color: #75413f;\n}\n.lg\\:text-brick-darker[data-v-1db929c2],\n.lg\\:hover\\:text-brick-darker[data-v-1db929c2]:hover {\n  color: #421e1b;\n}\n.lg\\:text-brick-darkest[data-v-1db929c2],\n.lg\\:hover\\:text-brick-darkest[data-v-1db929c2]:hover {\n  color: #260d0c;\n}\n.lg\\:text-cream-lightest[data-v-1db929c2],\n.lg\\:hover\\:text-cream-lightest[data-v-1db929c2]:hover {\n  color: #fff;\n}\n.lg\\:text-cream-lighter[data-v-1db929c2],\n.lg\\:hover\\:text-cream-lighter[data-v-1db929c2]:hover {\n  color: #f9f9fa;\n}\n.lg\\:text-cream-light[data-v-1db929c2],\n.lg\\:hover\\:text-cream-light[data-v-1db929c2]:hover {\n  color: #f4f4f5;\n}\n.lg\\:text-cream[data-v-1db929c2],\n.lg\\:hover\\:text-cream[data-v-1db929c2]:hover {\n  color: #f4f4f0;\n}\n.lg\\:text-cream-dark[data-v-1db929c2],\n.lg\\:hover\\:text-cream-dark[data-v-1db929c2]:hover {\n  color: #d9d5c3;\n}\n.lg\\:text-cream-darker[data-v-1db929c2],\n.lg\\:hover\\:text-cream-darker[data-v-1db929c2]:hover {\n  color: #bfba99;\n}\n.lg\\:text-cream-darkest[data-v-1db929c2],\n.lg\\:hover\\:text-cream-darkest[data-v-1db929c2]:hover {\n  color: #a39a73;\n}\n.lg\\:text-charcoal-lightest[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-lightest[data-v-1db929c2]:hover {\n  color: #969696;\n}\n.lg\\:text-charcoal-lighter[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-lighter[data-v-1db929c2]:hover {\n  color: #7f7f7f;\n}\n.lg\\:text-charcoal-light[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-light[data-v-1db929c2]:hover {\n  color: #686868;\n}\n.lg\\:text-charcoal[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal[data-v-1db929c2]:hover {\n  color: #514c4d;\n}\n.lg\\:text-charcoal-dark[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-dark[data-v-1db929c2]:hover {\n  color: #332b2d;\n}\n.lg\\:text-charcoal-darker[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-darker[data-v-1db929c2]:hover {\n  color: #1a1416;\n}\n.lg\\:text-charcoal-darkest[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-darkest[data-v-1db929c2]:hover {\n  color: #0c090a;\n}\n.lg\\:text-gold-lightest[data-v-1db929c2],\n.lg\\:hover\\:text-gold-lightest[data-v-1db929c2]:hover {\n  color: #e0e0e0;\n}\n.lg\\:text-gold-lighter[data-v-1db929c2],\n.lg\\:hover\\:text-gold-lighter[data-v-1db929c2]:hover {\n  color: #c9c9c9;\n}\n.lg\\:text-gold-light[data-v-1db929c2],\n.lg\\:hover\\:text-gold-light[data-v-1db929c2]:hover {\n  color: #b0ada7;\n}\n.lg\\:text-gold[data-v-1db929c2],\n.lg\\:hover\\:text-gold[data-v-1db929c2]:hover {\n  color: #989488;\n}\n.lg\\:text-gold-dark[data-v-1db929c2],\n.lg\\:hover\\:text-gold-dark[data-v-1db929c2]:hover {\n  color: #7c7664;\n}\n.lg\\:text-gold-darker[data-v-1db929c2],\n.lg\\:hover\\:text-gold-darker[data-v-1db929c2]:hover {\n  color: #635a46;\n}\n.lg\\:text-gold-darkest[data-v-1db929c2],\n.lg\\:hover\\:text-gold-darkest[data-v-1db929c2]:hover {\n  color: #473e2b;\n}\n.xl\\:text-brick-lightest[data-v-1db929c2],\n.xl\\:hover\\:text-brick-lightest[data-v-1db929c2]:hover {\n  color: #dbcdcc;\n}\n.xl\\:text-brick-lighter[data-v-1db929c2],\n.xl\\:hover\\:text-brick-lighter[data-v-1db929c2]:hover {\n  color: #c2a3a0;\n}\n.xl\\:text-brick-light[data-v-1db929c2],\n.xl\\:hover\\:text-brick-light[data-v-1db929c2]:hover {\n  color: #aa7f7b;\n}\n.xl\\:text-brick[data-v-1db929c2],\n.xl\\:hover\\:text-brick[data-v-1db929c2]:hover {\n  color: #93625b;\n}\n.xl\\:text-brick-dark[data-v-1db929c2],\n.xl\\:hover\\:text-brick-dark[data-v-1db929c2]:hover {\n  color: #75413f;\n}\n.xl\\:text-brick-darker[data-v-1db929c2],\n.xl\\:hover\\:text-brick-darker[data-v-1db929c2]:hover {\n  color: #421e1b;\n}\n.xl\\:text-brick-darkest[data-v-1db929c2],\n.xl\\:hover\\:text-brick-darkest[data-v-1db929c2]:hover {\n  color: #260d0c;\n}\n.xl\\:text-cream-lightest[data-v-1db929c2],\n.xl\\:hover\\:text-cream-lightest[data-v-1db929c2]:hover {\n  color: #fff;\n}\n.xl\\:text-cream-lighter[data-v-1db929c2],\n.xl\\:hover\\:text-cream-lighter[data-v-1db929c2]:hover {\n  color: #f9f9fa;\n}\n.xl\\:text-cream-light[data-v-1db929c2],\n.xl\\:hover\\:text-cream-light[data-v-1db929c2]:hover {\n  color: #f4f4f5;\n}\n.xl\\:text-cream[data-v-1db929c2],\n.xl\\:hover\\:text-cream[data-v-1db929c2]:hover {\n  color: #f4f4f0;\n}\n.xl\\:text-cream-dark[data-v-1db929c2],\n.xl\\:hover\\:text-cream-dark[data-v-1db929c2]:hover {\n  color: #d9d5c3;\n}\n.xl\\:text-cream-darker[data-v-1db929c2],\n.xl\\:hover\\:text-cream-darker[data-v-1db929c2]:hover {\n  color: #bfba99;\n}\n.xl\\:text-cream-darkest[data-v-1db929c2],\n.xl\\:hover\\:text-cream-darkest[data-v-1db929c2]:hover {\n  color: #a39a73;\n}\n.xl\\:text-charcoal-lightest[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-lightest[data-v-1db929c2]:hover {\n  color: #969696;\n}\n.xl\\:text-charcoal-lighter[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-lighter[data-v-1db929c2]:hover {\n  color: #7f7f7f;\n}\n.xl\\:text-charcoal-light[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-light[data-v-1db929c2]:hover {\n  color: #686868;\n}\n.xl\\:text-charcoal[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal[data-v-1db929c2]:hover {\n  color: #514c4d;\n}\n.xl\\:text-charcoal-dark[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-dark[data-v-1db929c2]:hover {\n  color: #332b2d;\n}\n.xl\\:text-charcoal-darker[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-darker[data-v-1db929c2]:hover {\n  color: #1a1416;\n}\n.xl\\:text-charcoal-darkest[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-darkest[data-v-1db929c2]:hover {\n  color: #0c090a;\n}\n.xl\\:text-gold-lightest[data-v-1db929c2],\n.xl\\:hover\\:text-gold-lightest[data-v-1db929c2]:hover {\n  color: #e0e0e0;\n}\n.xl\\:text-gold-lighter[data-v-1db929c2],\n.xl\\:hover\\:text-gold-lighter[data-v-1db929c2]:hover {\n  color: #c9c9c9;\n}\n.xl\\:text-gold-light[data-v-1db929c2],\n.xl\\:hover\\:text-gold-light[data-v-1db929c2]:hover {\n  color: #b0ada7;\n}\n.xl\\:text-gold[data-v-1db929c2],\n.xl\\:hover\\:text-gold[data-v-1db929c2]:hover {\n  color: #989488;\n}\n.xl\\:text-gold-dark[data-v-1db929c2],\n.xl\\:hover\\:text-gold-dark[data-v-1db929c2]:hover {\n  color: #7c7664;\n}\n.xl\\:text-gold-darker[data-v-1db929c2],\n.xl\\:hover\\:text-gold-darker[data-v-1db929c2]:hover {\n  color: #635a46;\n}\n.xl\\:text-gold-darkest[data-v-1db929c2],\n.xl\\:hover\\:text-gold-darkest[data-v-1db929c2]:hover {\n  color: #473e2b;\n}\n.text-brick-lightest[data-v-1db929c2],\n.hover\\:text-brick-lightest[data-v-1db929c2]:hover {\n  color: #dbcdcc;\n}\n.text-brick-lighter[data-v-1db929c2],\n.hover\\:text-brick-lighter[data-v-1db929c2]:hover {\n  color: #c2a3a0;\n}\n.text-brick-light[data-v-1db929c2],\n.hover\\:text-brick-light[data-v-1db929c2]:hover {\n  color: #aa7f7b;\n}\n.text-brick[data-v-1db929c2],\n.hover\\:text-brick[data-v-1db929c2]:hover {\n  color: #93625b;\n}\n.text-brick-dark[data-v-1db929c2],\n.hover\\:text-brick-dark[data-v-1db929c2]:hover {\n  color: #75413f;\n}\n.text-brick-darker[data-v-1db929c2],\n.hover\\:text-brick-darker[data-v-1db929c2]:hover {\n  color: #421e1b;\n}\n.text-brick-darkest[data-v-1db929c2],\n.hover\\:text-brick-darkest[data-v-1db929c2]:hover {\n  color: #260d0c;\n}\n.text-cream-lightest[data-v-1db929c2],\n.hover\\:text-cream-lightest[data-v-1db929c2]:hover {\n  color: #fff;\n}\n.text-cream-lighter[data-v-1db929c2],\n.hover\\:text-cream-lighter[data-v-1db929c2]:hover {\n  color: #f9f9fa;\n}\n.text-cream-light[data-v-1db929c2],\n.hover\\:text-cream-light[data-v-1db929c2]:hover {\n  color: #f4f4f5;\n}\n.text-cream[data-v-1db929c2],\n.hover\\:text-cream[data-v-1db929c2]:hover {\n  color: #f4f4f0;\n}\n.text-cream-dark[data-v-1db929c2],\n.hover\\:text-cream-dark[data-v-1db929c2]:hover {\n  color: #d9d5c3;\n}\n.text-cream-darker[data-v-1db929c2],\n.hover\\:text-cream-darker[data-v-1db929c2]:hover {\n  color: #bfba99;\n}\n.text-cream-darkest[data-v-1db929c2],\n.hover\\:text-cream-darkest[data-v-1db929c2]:hover {\n  color: #a39a73;\n}\n.text-charcoal-lightest[data-v-1db929c2],\n.hover\\:text-charcoal-lightest[data-v-1db929c2]:hover {\n  color: #969696;\n}\n.text-charcoal-lighter[data-v-1db929c2],\n.hover\\:text-charcoal-lighter[data-v-1db929c2]:hover {\n  color: #7f7f7f;\n}\n.text-charcoal-light[data-v-1db929c2],\n.hover\\:text-charcoal-light[data-v-1db929c2]:hover {\n  color: #686868;\n}\n.text-charcoal[data-v-1db929c2],\n.hover\\:text-charcoal[data-v-1db929c2]:hover {\n  color: #514c4d;\n}\n.text-charcoal-dark[data-v-1db929c2],\n.hover\\:text-charcoal-dark[data-v-1db929c2]:hover {\n  color: #332b2d;\n}\n.text-charcoal-darker[data-v-1db929c2],\n.hover\\:text-charcoal-darker[data-v-1db929c2]:hover {\n  color: #1a1416;\n}\n.text-charcoal-darkest[data-v-1db929c2],\n.hover\\:text-charcoal-darkest[data-v-1db929c2]:hover {\n  color: #0c090a;\n}\n.text-gold-lightest[data-v-1db929c2],\n.hover\\:text-gold-lightest[data-v-1db929c2]:hover {\n  color: #e0e0e0;\n}\n.text-gold-lighter[data-v-1db929c2],\n.hover\\:text-gold-lighter[data-v-1db929c2]:hover {\n  color: #c9c9c9;\n}\n.text-gold-light[data-v-1db929c2],\n.hover\\:text-gold-light[data-v-1db929c2]:hover {\n  color: #b0ada7;\n}\n.text-gold[data-v-1db929c2],\n.hover\\:text-gold[data-v-1db929c2]:hover {\n  color: #989488;\n}\n.text-gold-dark[data-v-1db929c2],\n.hover\\:text-gold-dark[data-v-1db929c2]:hover {\n  color: #7c7664;\n}\n.text-gold-darker[data-v-1db929c2],\n.hover\\:text-gold-darker[data-v-1db929c2]:hover {\n  color: #635a46;\n}\n.text-gold-darkest[data-v-1db929c2],\n.hover\\:text-gold-darkest[data-v-1db929c2]:hover {\n  color: #473e2b;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".shadow-light[data-v-1db929c2],\n.hover\\:shadow-light[data-v-1db929c2]:hover {\n  text-shadow: 1px 1px 0 #f4f4f0, 2px 2px 0 rgba(81, 76, 77, 0.3);\n}\ninput[data-v-1db929c2]:focus,\ntextarea[data-v-1db929c2]:focus {\n  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);\n  outline: none;\n}\n\n/* @apply doesn't work on code pen. */\n/* The above renders out to: */\n.button[data-v-1db929c2] {\n  display: inline-block;\n  margin-top: 1.5rem;\n  border-radius: 0.25rem;\n  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  text-decoration: none;\n  border: 0;\n}\n.overflow-y-hidden[data-v-1db929c2] {\n  overflow-y: hidden;\n}\n.overflow-x-hidden[data-v-1db929c2] {\n  overflow-x: hidden;\n}\n.border-x-0[data-v-1db929c2] {\n  border-left: 0;\n  border-right: 0;\n}\n.border-y-0[data-v-1db929c2] {\n  border-top: 0;\n  border-bottom: 0;\n}\n.bg-brick-lightest[data-v-1db929c2],\n.hover\\:bg-brick-lightest[data-v-1db929c2]:hover {\n  background-color: #dbcdcc;\n}\n.bg-brick-lighter[data-v-1db929c2],\n.hover\\:bg-brick-lighter[data-v-1db929c2]:hover {\n  background-color: #c2a3a0;\n}\n.bg-brick-light[data-v-1db929c2],\n.hover\\:bg-brick-light[data-v-1db929c2]:hover {\n  background-color: #aa7f7b;\n}\n.bg-brick[data-v-1db929c2],\n.hover\\:bg-brick[data-v-1db929c2]:hover {\n  background-color: #93625b;\n}\n.bg-brick-dark[data-v-1db929c2],\n.hover\\:bg-brick-dark[data-v-1db929c2]:hover {\n  background-color: #75413f;\n}\n.bg-brick-darker[data-v-1db929c2],\n.hover\\:bg-brick-darker[data-v-1db929c2]:hover {\n  background-color: #421e1b;\n}\n.bg-brick-darkest[data-v-1db929c2],\n.hover\\:bg-brick-darkest[data-v-1db929c2]:hover {\n  background-color: #260d0c;\n}\n.bg-cream-lightest[data-v-1db929c2],\n.hover\\:bg-cream-lightest[data-v-1db929c2]:hover {\n  background-color: #fff;\n}\n.bg-cream-lighter[data-v-1db929c2],\n.hover\\:bg-cream-lighter[data-v-1db929c2]:hover {\n  background-color: #f9f9fa;\n}\n.bg-cream-light[data-v-1db929c2],\n.hover\\:bg-cream-light[data-v-1db929c2]:hover {\n  background-color: #f4f4f5;\n}\n.bg-cream[data-v-1db929c2],\n.hover\\:bg-cream[data-v-1db929c2]:hover {\n  background-color: #f4f4f0;\n}\n.bg-cream-dark[data-v-1db929c2],\n.hover\\:bg-cream-dark[data-v-1db929c2]:hover {\n  background-color: #d9d5c3;\n}\n.bg-cream-darker[data-v-1db929c2],\n.hover\\:bg-cream-darker[data-v-1db929c2]:hover {\n  background-color: #bfba99;\n}\n.bg-cream-darkest[data-v-1db929c2],\n.hover\\:bg-cream-darkest[data-v-1db929c2]:hover {\n  background-color: #a39a73;\n}\n.bg-charcoal-lightest[data-v-1db929c2],\n.hover\\:bg-charcoal-lightest[data-v-1db929c2]:hover {\n  background-color: #969696;\n}\n.bg-charcoal-lighter[data-v-1db929c2],\n.hover\\:bg-charcoal-lighter[data-v-1db929c2]:hover {\n  background-color: #7f7f7f;\n}\n.bg-charcoal-light[data-v-1db929c2],\n.hover\\:bg-charcoal-light[data-v-1db929c2]:hover {\n  background-color: #686868;\n}\n.bg-charcoal[data-v-1db929c2],\n.hover\\:bg-charcoal[data-v-1db929c2]:hover {\n  background-color: #514c4d;\n}\n.bg-charcoal-dark[data-v-1db929c2],\n.hover\\:bg-charcoal-dark[data-v-1db929c2]:hover {\n  background-color: #332b2d;\n}\n.bg-charcoal-darker[data-v-1db929c2],\n.hover\\:bg-charcoal-darker[data-v-1db929c2]:hover {\n  background-color: #1a1416;\n}\n.bg-charcoal-darkest[data-v-1db929c2],\n.hover\\:bg-charcoal-darkest[data-v-1db929c2]:hover {\n  background-color: #0c090a;\n}\n.bg-gold-lightest[data-v-1db929c2],\n.hover\\:bg-gold-lightest[data-v-1db929c2]:hover {\n  background-color: #e0e0e0;\n}\n.bg-gold-lighter[data-v-1db929c2],\n.hover\\:bg-gold-lighter[data-v-1db929c2]:hover {\n  background-color: #c9c9c9;\n}\n.bg-gold-light[data-v-1db929c2],\n.hover\\:bg-gold-light[data-v-1db929c2]:hover {\n  background-color: #b0ada7;\n}\n.bg-gold[data-v-1db929c2],\n.hover\\:bg-gold[data-v-1db929c2]:hover {\n  background-color: #989488;\n}\n.bg-gold-dark[data-v-1db929c2],\n.hover\\:bg-gold-dark[data-v-1db929c2]:hover {\n  background-color: #7c7664;\n}\n.bg-gold-darker[data-v-1db929c2],\n.hover\\:bg-gold-darker[data-v-1db929c2]:hover {\n  background-color: #635a46;\n}\n.bg-gold-darkest[data-v-1db929c2],\n.hover\\:bg-gold-darkest[data-v-1db929c2]:hover {\n  background-color: #473e2b;\n}\n.sm\\:text-brick-lightest[data-v-1db929c2],\n.sm\\:hover\\:text-brick-lightest[data-v-1db929c2]:hover {\n  color: #dbcdcc;\n}\n.sm\\:text-brick-lighter[data-v-1db929c2],\n.sm\\:hover\\:text-brick-lighter[data-v-1db929c2]:hover {\n  color: #c2a3a0;\n}\n.sm\\:text-brick-light[data-v-1db929c2],\n.sm\\:hover\\:text-brick-light[data-v-1db929c2]:hover {\n  color: #aa7f7b;\n}\n.sm\\:text-brick[data-v-1db929c2],\n.sm\\:hover\\:text-brick[data-v-1db929c2]:hover {\n  color: #93625b;\n}\n.sm\\:text-brick-dark[data-v-1db929c2],\n.sm\\:hover\\:text-brick-dark[data-v-1db929c2]:hover {\n  color: #75413f;\n}\n.sm\\:text-brick-darker[data-v-1db929c2],\n.sm\\:hover\\:text-brick-darker[data-v-1db929c2]:hover {\n  color: #421e1b;\n}\n.sm\\:text-brick-darkest[data-v-1db929c2],\n.sm\\:hover\\:text-brick-darkest[data-v-1db929c2]:hover {\n  color: #260d0c;\n}\n.sm\\:text-cream-lightest[data-v-1db929c2],\n.sm\\:hover\\:text-cream-lightest[data-v-1db929c2]:hover {\n  color: #fff;\n}\n.sm\\:text-cream-lighter[data-v-1db929c2],\n.sm\\:hover\\:text-cream-lighter[data-v-1db929c2]:hover {\n  color: #f9f9fa;\n}\n.sm\\:text-cream-light[data-v-1db929c2],\n.sm\\:hover\\:text-cream-light[data-v-1db929c2]:hover {\n  color: #f4f4f5;\n}\n.sm\\:text-cream[data-v-1db929c2],\n.sm\\:hover\\:text-cream[data-v-1db929c2]:hover {\n  color: #f4f4f0;\n}\n.sm\\:text-cream-dark[data-v-1db929c2],\n.sm\\:hover\\:text-cream-dark[data-v-1db929c2]:hover {\n  color: #d9d5c3;\n}\n.sm\\:text-cream-darker[data-v-1db929c2],\n.sm\\:hover\\:text-cream-darker[data-v-1db929c2]:hover {\n  color: #bfba99;\n}\n.sm\\:text-cream-darkest[data-v-1db929c2],\n.sm\\:hover\\:text-cream-darkest[data-v-1db929c2]:hover {\n  color: #a39a73;\n}\n.sm\\:text-charcoal-lightest[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-lightest[data-v-1db929c2]:hover {\n  color: #969696;\n}\n.sm\\:text-charcoal-lighter[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-lighter[data-v-1db929c2]:hover {\n  color: #7f7f7f;\n}\n.sm\\:text-charcoal-light[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-light[data-v-1db929c2]:hover {\n  color: #686868;\n}\n.sm\\:text-charcoal[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal[data-v-1db929c2]:hover {\n  color: #514c4d;\n}\n.sm\\:text-charcoal-dark[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-dark[data-v-1db929c2]:hover {\n  color: #332b2d;\n}\n.sm\\:text-charcoal-darker[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-darker[data-v-1db929c2]:hover {\n  color: #1a1416;\n}\n.sm\\:text-charcoal-darkest[data-v-1db929c2],\n.sm\\:hover\\:text-charcoal-darkest[data-v-1db929c2]:hover {\n  color: #0c090a;\n}\n.sm\\:text-gold-lightest[data-v-1db929c2],\n.sm\\:hover\\:text-gold-lightest[data-v-1db929c2]:hover {\n  color: #e0e0e0;\n}\n.sm\\:text-gold-lighter[data-v-1db929c2],\n.sm\\:hover\\:text-gold-lighter[data-v-1db929c2]:hover {\n  color: #c9c9c9;\n}\n.sm\\:text-gold-light[data-v-1db929c2],\n.sm\\:hover\\:text-gold-light[data-v-1db929c2]:hover {\n  color: #b0ada7;\n}\n.sm\\:text-gold[data-v-1db929c2],\n.sm\\:hover\\:text-gold[data-v-1db929c2]:hover {\n  color: #989488;\n}\n.sm\\:text-gold-dark[data-v-1db929c2],\n.sm\\:hover\\:text-gold-dark[data-v-1db929c2]:hover {\n  color: #7c7664;\n}\n.sm\\:text-gold-darker[data-v-1db929c2],\n.sm\\:hover\\:text-gold-darker[data-v-1db929c2]:hover {\n  color: #635a46;\n}\n.sm\\:text-gold-darkest[data-v-1db929c2],\n.sm\\:hover\\:text-gold-darkest[data-v-1db929c2]:hover {\n  color: #473e2b;\n}\n.md\\:text-brick-lightest[data-v-1db929c2],\n.md\\:hover\\:text-brick-lightest[data-v-1db929c2]:hover {\n  color: #dbcdcc;\n}\n.md\\:text-brick-lighter[data-v-1db929c2],\n.md\\:hover\\:text-brick-lighter[data-v-1db929c2]:hover {\n  color: #c2a3a0;\n}\n.md\\:text-brick-light[data-v-1db929c2],\n.md\\:hover\\:text-brick-light[data-v-1db929c2]:hover {\n  color: #aa7f7b;\n}\n.md\\:text-brick[data-v-1db929c2],\n.md\\:hover\\:text-brick[data-v-1db929c2]:hover {\n  color: #93625b;\n}\n.md\\:text-brick-dark[data-v-1db929c2],\n.md\\:hover\\:text-brick-dark[data-v-1db929c2]:hover {\n  color: #75413f;\n}\n.md\\:text-brick-darker[data-v-1db929c2],\n.md\\:hover\\:text-brick-darker[data-v-1db929c2]:hover {\n  color: #421e1b;\n}\n.md\\:text-brick-darkest[data-v-1db929c2],\n.md\\:hover\\:text-brick-darkest[data-v-1db929c2]:hover {\n  color: #260d0c;\n}\n.md\\:text-cream-lightest[data-v-1db929c2],\n.md\\:hover\\:text-cream-lightest[data-v-1db929c2]:hover {\n  color: #fff;\n}\n.md\\:text-cream-lighter[data-v-1db929c2],\n.md\\:hover\\:text-cream-lighter[data-v-1db929c2]:hover {\n  color: #f9f9fa;\n}\n.md\\:text-cream-light[data-v-1db929c2],\n.md\\:hover\\:text-cream-light[data-v-1db929c2]:hover {\n  color: #f4f4f5;\n}\n.md\\:text-cream[data-v-1db929c2],\n.md\\:hover\\:text-cream[data-v-1db929c2]:hover {\n  color: #f4f4f0;\n}\n.md\\:text-cream-dark[data-v-1db929c2],\n.md\\:hover\\:text-cream-dark[data-v-1db929c2]:hover {\n  color: #d9d5c3;\n}\n.md\\:text-cream-darker[data-v-1db929c2],\n.md\\:hover\\:text-cream-darker[data-v-1db929c2]:hover {\n  color: #bfba99;\n}\n.md\\:text-cream-darkest[data-v-1db929c2],\n.md\\:hover\\:text-cream-darkest[data-v-1db929c2]:hover {\n  color: #a39a73;\n}\n.md\\:text-charcoal-lightest[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-lightest[data-v-1db929c2]:hover {\n  color: #969696;\n}\n.md\\:text-charcoal-lighter[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-lighter[data-v-1db929c2]:hover {\n  color: #7f7f7f;\n}\n.md\\:text-charcoal-light[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-light[data-v-1db929c2]:hover {\n  color: #686868;\n}\n.md\\:text-charcoal[data-v-1db929c2],\n.md\\:hover\\:text-charcoal[data-v-1db929c2]:hover {\n  color: #514c4d;\n}\n.md\\:text-charcoal-dark[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-dark[data-v-1db929c2]:hover {\n  color: #332b2d;\n}\n.md\\:text-charcoal-darker[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-darker[data-v-1db929c2]:hover {\n  color: #1a1416;\n}\n.md\\:text-charcoal-darkest[data-v-1db929c2],\n.md\\:hover\\:text-charcoal-darkest[data-v-1db929c2]:hover {\n  color: #0c090a;\n}\n.md\\:text-gold-lightest[data-v-1db929c2],\n.md\\:hover\\:text-gold-lightest[data-v-1db929c2]:hover {\n  color: #e0e0e0;\n}\n.md\\:text-gold-lighter[data-v-1db929c2],\n.md\\:hover\\:text-gold-lighter[data-v-1db929c2]:hover {\n  color: #c9c9c9;\n}\n.md\\:text-gold-light[data-v-1db929c2],\n.md\\:hover\\:text-gold-light[data-v-1db929c2]:hover {\n  color: #b0ada7;\n}\n.md\\:text-gold[data-v-1db929c2],\n.md\\:hover\\:text-gold[data-v-1db929c2]:hover {\n  color: #989488;\n}\n.md\\:text-gold-dark[data-v-1db929c2],\n.md\\:hover\\:text-gold-dark[data-v-1db929c2]:hover {\n  color: #7c7664;\n}\n.md\\:text-gold-darker[data-v-1db929c2],\n.md\\:hover\\:text-gold-darker[data-v-1db929c2]:hover {\n  color: #635a46;\n}\n.md\\:text-gold-darkest[data-v-1db929c2],\n.md\\:hover\\:text-gold-darkest[data-v-1db929c2]:hover {\n  color: #473e2b;\n}\n.lg\\:text-brick-lightest[data-v-1db929c2],\n.lg\\:hover\\:text-brick-lightest[data-v-1db929c2]:hover {\n  color: #dbcdcc;\n}\n.lg\\:text-brick-lighter[data-v-1db929c2],\n.lg\\:hover\\:text-brick-lighter[data-v-1db929c2]:hover {\n  color: #c2a3a0;\n}\n.lg\\:text-brick-light[data-v-1db929c2],\n.lg\\:hover\\:text-brick-light[data-v-1db929c2]:hover {\n  color: #aa7f7b;\n}\n.lg\\:text-brick[data-v-1db929c2],\n.lg\\:hover\\:text-brick[data-v-1db929c2]:hover {\n  color: #93625b;\n}\n.lg\\:text-brick-dark[data-v-1db929c2],\n.lg\\:hover\\:text-brick-dark[data-v-1db929c2]:hover {\n  color: #75413f;\n}\n.lg\\:text-brick-darker[data-v-1db929c2],\n.lg\\:hover\\:text-brick-darker[data-v-1db929c2]:hover {\n  color: #421e1b;\n}\n.lg\\:text-brick-darkest[data-v-1db929c2],\n.lg\\:hover\\:text-brick-darkest[data-v-1db929c2]:hover {\n  color: #260d0c;\n}\n.lg\\:text-cream-lightest[data-v-1db929c2],\n.lg\\:hover\\:text-cream-lightest[data-v-1db929c2]:hover {\n  color: #fff;\n}\n.lg\\:text-cream-lighter[data-v-1db929c2],\n.lg\\:hover\\:text-cream-lighter[data-v-1db929c2]:hover {\n  color: #f9f9fa;\n}\n.lg\\:text-cream-light[data-v-1db929c2],\n.lg\\:hover\\:text-cream-light[data-v-1db929c2]:hover {\n  color: #f4f4f5;\n}\n.lg\\:text-cream[data-v-1db929c2],\n.lg\\:hover\\:text-cream[data-v-1db929c2]:hover {\n  color: #f4f4f0;\n}\n.lg\\:text-cream-dark[data-v-1db929c2],\n.lg\\:hover\\:text-cream-dark[data-v-1db929c2]:hover {\n  color: #d9d5c3;\n}\n.lg\\:text-cream-darker[data-v-1db929c2],\n.lg\\:hover\\:text-cream-darker[data-v-1db929c2]:hover {\n  color: #bfba99;\n}\n.lg\\:text-cream-darkest[data-v-1db929c2],\n.lg\\:hover\\:text-cream-darkest[data-v-1db929c2]:hover {\n  color: #a39a73;\n}\n.lg\\:text-charcoal-lightest[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-lightest[data-v-1db929c2]:hover {\n  color: #969696;\n}\n.lg\\:text-charcoal-lighter[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-lighter[data-v-1db929c2]:hover {\n  color: #7f7f7f;\n}\n.lg\\:text-charcoal-light[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-light[data-v-1db929c2]:hover {\n  color: #686868;\n}\n.lg\\:text-charcoal[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal[data-v-1db929c2]:hover {\n  color: #514c4d;\n}\n.lg\\:text-charcoal-dark[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-dark[data-v-1db929c2]:hover {\n  color: #332b2d;\n}\n.lg\\:text-charcoal-darker[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-darker[data-v-1db929c2]:hover {\n  color: #1a1416;\n}\n.lg\\:text-charcoal-darkest[data-v-1db929c2],\n.lg\\:hover\\:text-charcoal-darkest[data-v-1db929c2]:hover {\n  color: #0c090a;\n}\n.lg\\:text-gold-lightest[data-v-1db929c2],\n.lg\\:hover\\:text-gold-lightest[data-v-1db929c2]:hover {\n  color: #e0e0e0;\n}\n.lg\\:text-gold-lighter[data-v-1db929c2],\n.lg\\:hover\\:text-gold-lighter[data-v-1db929c2]:hover {\n  color: #c9c9c9;\n}\n.lg\\:text-gold-light[data-v-1db929c2],\n.lg\\:hover\\:text-gold-light[data-v-1db929c2]:hover {\n  color: #b0ada7;\n}\n.lg\\:text-gold[data-v-1db929c2],\n.lg\\:hover\\:text-gold[data-v-1db929c2]:hover {\n  color: #989488;\n}\n.lg\\:text-gold-dark[data-v-1db929c2],\n.lg\\:hover\\:text-gold-dark[data-v-1db929c2]:hover {\n  color: #7c7664;\n}\n.lg\\:text-gold-darker[data-v-1db929c2],\n.lg\\:hover\\:text-gold-darker[data-v-1db929c2]:hover {\n  color: #635a46;\n}\n.lg\\:text-gold-darkest[data-v-1db929c2],\n.lg\\:hover\\:text-gold-darkest[data-v-1db929c2]:hover {\n  color: #473e2b;\n}\n.xl\\:text-brick-lightest[data-v-1db929c2],\n.xl\\:hover\\:text-brick-lightest[data-v-1db929c2]:hover {\n  color: #dbcdcc;\n}\n.xl\\:text-brick-lighter[data-v-1db929c2],\n.xl\\:hover\\:text-brick-lighter[data-v-1db929c2]:hover {\n  color: #c2a3a0;\n}\n.xl\\:text-brick-light[data-v-1db929c2],\n.xl\\:hover\\:text-brick-light[data-v-1db929c2]:hover {\n  color: #aa7f7b;\n}\n.xl\\:text-brick[data-v-1db929c2],\n.xl\\:hover\\:text-brick[data-v-1db929c2]:hover {\n  color: #93625b;\n}\n.xl\\:text-brick-dark[data-v-1db929c2],\n.xl\\:hover\\:text-brick-dark[data-v-1db929c2]:hover {\n  color: #75413f;\n}\n.xl\\:text-brick-darker[data-v-1db929c2],\n.xl\\:hover\\:text-brick-darker[data-v-1db929c2]:hover {\n  color: #421e1b;\n}\n.xl\\:text-brick-darkest[data-v-1db929c2],\n.xl\\:hover\\:text-brick-darkest[data-v-1db929c2]:hover {\n  color: #260d0c;\n}\n.xl\\:text-cream-lightest[data-v-1db929c2],\n.xl\\:hover\\:text-cream-lightest[data-v-1db929c2]:hover {\n  color: #fff;\n}\n.xl\\:text-cream-lighter[data-v-1db929c2],\n.xl\\:hover\\:text-cream-lighter[data-v-1db929c2]:hover {\n  color: #f9f9fa;\n}\n.xl\\:text-cream-light[data-v-1db929c2],\n.xl\\:hover\\:text-cream-light[data-v-1db929c2]:hover {\n  color: #f4f4f5;\n}\n.xl\\:text-cream[data-v-1db929c2],\n.xl\\:hover\\:text-cream[data-v-1db929c2]:hover {\n  color: #f4f4f0;\n}\n.xl\\:text-cream-dark[data-v-1db929c2],\n.xl\\:hover\\:text-cream-dark[data-v-1db929c2]:hover {\n  color: #d9d5c3;\n}\n.xl\\:text-cream-darker[data-v-1db929c2],\n.xl\\:hover\\:text-cream-darker[data-v-1db929c2]:hover {\n  color: #bfba99;\n}\n.xl\\:text-cream-darkest[data-v-1db929c2],\n.xl\\:hover\\:text-cream-darkest[data-v-1db929c2]:hover {\n  color: #a39a73;\n}\n.xl\\:text-charcoal-lightest[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-lightest[data-v-1db929c2]:hover {\n  color: #969696;\n}\n.xl\\:text-charcoal-lighter[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-lighter[data-v-1db929c2]:hover {\n  color: #7f7f7f;\n}\n.xl\\:text-charcoal-light[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-light[data-v-1db929c2]:hover {\n  color: #686868;\n}\n.xl\\:text-charcoal[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal[data-v-1db929c2]:hover {\n  color: #514c4d;\n}\n.xl\\:text-charcoal-dark[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-dark[data-v-1db929c2]:hover {\n  color: #332b2d;\n}\n.xl\\:text-charcoal-darker[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-darker[data-v-1db929c2]:hover {\n  color: #1a1416;\n}\n.xl\\:text-charcoal-darkest[data-v-1db929c2],\n.xl\\:hover\\:text-charcoal-darkest[data-v-1db929c2]:hover {\n  color: #0c090a;\n}\n.xl\\:text-gold-lightest[data-v-1db929c2],\n.xl\\:hover\\:text-gold-lightest[data-v-1db929c2]:hover {\n  color: #e0e0e0;\n}\n.xl\\:text-gold-lighter[data-v-1db929c2],\n.xl\\:hover\\:text-gold-lighter[data-v-1db929c2]:hover {\n  color: #c9c9c9;\n}\n.xl\\:text-gold-light[data-v-1db929c2],\n.xl\\:hover\\:text-gold-light[data-v-1db929c2]:hover {\n  color: #b0ada7;\n}\n.xl\\:text-gold[data-v-1db929c2],\n.xl\\:hover\\:text-gold[data-v-1db929c2]:hover {\n  color: #989488;\n}\n.xl\\:text-gold-dark[data-v-1db929c2],\n.xl\\:hover\\:text-gold-dark[data-v-1db929c2]:hover {\n  color: #7c7664;\n}\n.xl\\:text-gold-darker[data-v-1db929c2],\n.xl\\:hover\\:text-gold-darker[data-v-1db929c2]:hover {\n  color: #635a46;\n}\n.xl\\:text-gold-darkest[data-v-1db929c2],\n.xl\\:hover\\:text-gold-darkest[data-v-1db929c2]:hover {\n  color: #473e2b;\n}\n.text-brick-lightest[data-v-1db929c2],\n.hover\\:text-brick-lightest[data-v-1db929c2]:hover {\n  color: #dbcdcc;\n}\n.text-brick-lighter[data-v-1db929c2],\n.hover\\:text-brick-lighter[data-v-1db929c2]:hover {\n  color: #c2a3a0;\n}\n.text-brick-light[data-v-1db929c2],\n.hover\\:text-brick-light[data-v-1db929c2]:hover {\n  color: #aa7f7b;\n}\n.text-brick[data-v-1db929c2],\n.hover\\:text-brick[data-v-1db929c2]:hover {\n  color: #93625b;\n}\n.text-brick-dark[data-v-1db929c2],\n.hover\\:text-brick-dark[data-v-1db929c2]:hover {\n  color: #75413f;\n}\n.text-brick-darker[data-v-1db929c2],\n.hover\\:text-brick-darker[data-v-1db929c2]:hover {\n  color: #421e1b;\n}\n.text-brick-darkest[data-v-1db929c2],\n.hover\\:text-brick-darkest[data-v-1db929c2]:hover {\n  color: #260d0c;\n}\n.text-cream-lightest[data-v-1db929c2],\n.hover\\:text-cream-lightest[data-v-1db929c2]:hover {\n  color: #fff;\n}\n.text-cream-lighter[data-v-1db929c2],\n.hover\\:text-cream-lighter[data-v-1db929c2]:hover {\n  color: #f9f9fa;\n}\n.text-cream-light[data-v-1db929c2],\n.hover\\:text-cream-light[data-v-1db929c2]:hover {\n  color: #f4f4f5;\n}\n.text-cream[data-v-1db929c2],\n.hover\\:text-cream[data-v-1db929c2]:hover {\n  color: #f4f4f0;\n}\n.text-cream-dark[data-v-1db929c2],\n.hover\\:text-cream-dark[data-v-1db929c2]:hover {\n  color: #d9d5c3;\n}\n.text-cream-darker[data-v-1db929c2],\n.hover\\:text-cream-darker[data-v-1db929c2]:hover {\n  color: #bfba99;\n}\n.text-cream-darkest[data-v-1db929c2],\n.hover\\:text-cream-darkest[data-v-1db929c2]:hover {\n  color: #a39a73;\n}\n.text-charcoal-lightest[data-v-1db929c2],\n.hover\\:text-charcoal-lightest[data-v-1db929c2]:hover {\n  color: #969696;\n}\n.text-charcoal-lighter[data-v-1db929c2],\n.hover\\:text-charcoal-lighter[data-v-1db929c2]:hover {\n  color: #7f7f7f;\n}\n.text-charcoal-light[data-v-1db929c2],\n.hover\\:text-charcoal-light[data-v-1db929c2]:hover {\n  color: #686868;\n}\n.text-charcoal[data-v-1db929c2],\n.hover\\:text-charcoal[data-v-1db929c2]:hover {\n  color: #514c4d;\n}\n.text-charcoal-dark[data-v-1db929c2],\n.hover\\:text-charcoal-dark[data-v-1db929c2]:hover {\n  color: #332b2d;\n}\n.text-charcoal-darker[data-v-1db929c2],\n.hover\\:text-charcoal-darker[data-v-1db929c2]:hover {\n  color: #1a1416;\n}\n.text-charcoal-darkest[data-v-1db929c2],\n.hover\\:text-charcoal-darkest[data-v-1db929c2]:hover {\n  color: #0c090a;\n}\n.text-gold-lightest[data-v-1db929c2],\n.hover\\:text-gold-lightest[data-v-1db929c2]:hover {\n  color: #e0e0e0;\n}\n.text-gold-lighter[data-v-1db929c2],\n.hover\\:text-gold-lighter[data-v-1db929c2]:hover {\n  color: #c9c9c9;\n}\n.text-gold-light[data-v-1db929c2],\n.hover\\:text-gold-light[data-v-1db929c2]:hover {\n  color: #b0ada7;\n}\n.text-gold[data-v-1db929c2],\n.hover\\:text-gold[data-v-1db929c2]:hover {\n  color: #989488;\n}\n.text-gold-dark[data-v-1db929c2],\n.hover\\:text-gold-dark[data-v-1db929c2]:hover {\n  color: #7c7664;\n}\n.text-gold-darker[data-v-1db929c2],\n.hover\\:text-gold-darker[data-v-1db929c2]:hover {\n  color: #635a46;\n}\n.text-gold-darkest[data-v-1db929c2],\n.hover\\:text-gold-darkest[data-v-1db929c2]:hover {\n  color: #473e2b;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -85738,6 +86006,32 @@ _DropdownLink_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default._
 
 /***/ }),
 
+/***/ "./resources/js/Jetstream/FileInput.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/Jetstream/FileInput.vue ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _FileInput_vue_vue_type_template_id_71f8672a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FileInput.vue?vue&type=template&id=71f8672a */ "./resources/js/Jetstream/FileInput.vue?vue&type=template&id=71f8672a");
+/* harmony import */ var _FileInput_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FileInput.vue?vue&type=script&lang=js */ "./resources/js/Jetstream/FileInput.vue?vue&type=script&lang=js");
+
+
+
+_FileInput_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _FileInput_vue_vue_type_template_id_71f8672a__WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_FileInput_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/Jetstream/FileInput.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_FileInput_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
 /***/ "./resources/js/Jetstream/FormSection.vue":
 /*!************************************************!*\
   !*** ./resources/js/Jetstream/FormSection.vue ***!
@@ -86966,6 +87260,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Jetstream/FileInput.vue?vue&type=script&lang=js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/Jetstream/FileInput.vue?vue&type=script&lang=js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_FileInput_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_FileInput_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./FileInput.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/FileInput.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/Jetstream/FormSection.vue?vue&type=script&lang=js":
 /*!************************************************************************!*\
   !*** ./resources/js/Jetstream/FormSection.vue?vue&type=script&lang=js ***!
@@ -87810,6 +88120,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_DropdownLink_vue_vue_type_template_id_1114e65f__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_DropdownLink_vue_vue_type_template_id_1114e65f__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./DropdownLink.vue?vue&type=template&id=1114e65f */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/DropdownLink.vue?vue&type=template&id=1114e65f");
+
+
+/***/ }),
+
+/***/ "./resources/js/Jetstream/FileInput.vue?vue&type=template&id=71f8672a":
+/*!****************************************************************************!*\
+  !*** ./resources/js/Jetstream/FileInput.vue?vue&type=template&id=71f8672a ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_FileInput_vue_vue_type_template_id_71f8672a__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_FileInput_vue_vue_type_template_id_71f8672a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./FileInput.vue?vue&type=template&id=71f8672a */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Jetstream/FileInput.vue?vue&type=template&id=71f8672a");
 
 
 /***/ }),

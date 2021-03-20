@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Chapter;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+
 
 class ChaptersController extends Controller
 {
@@ -39,22 +44,41 @@ class ChaptersController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => ['required'],
+            'user_id' => ['required'],
             'description' => ['required'],
-            'host' => ['required'],
-            // 'chapter_logo' => ['required'],
+            'logo' => ['required'],
+            'thinLogo' => ['required']
         ]);
 
-        $chapter = Chapter::create(
-            $request->only(
-                'name',
-                'description',
-                'host',
-                // 'chapter_logo'
-            )
-        );
-        return Redirect::route('chapters', $chapter);
+            $chapter = new Chapter();
+            $chapter->name = $request['name'];
+            $chapter->user_id = $request['user_id'];
+            $chapter->description = $request['description'];
+            
+            if($request['logo']) {
+                $logo = $request['logo'];
+                $extension = $logo->getClientOriginalExtension();
+                $name = time() . '_'. $logo->getClientOriginalName();
+                Storage::disk('public')->put($name, File::get($logo));
+                $chapter->logo_path = $name;
+                $chapter->logo_thin_path = $name;
+            }
+
+            $chapter->save();
+
+        // Chapter::create([
+        //     'name'=> $request->get('name'),
+        //     'host'=> $request->get('host'),
+        //     'description'=> $request->get('description'),
+        //     'logo_path'=> $request->file('logo') ? $request->file('logo')->store('/images/chapter_logos') : null,
+        //     'logo_thin_path'=> $request->file('thinLogo') ? $request->file('thinLogo')->store('/images/chapter_logos') :
+        //     null,
+        // ]);
+    
+            return Redirect::route('chapters')->with('success', 'Chapter created.');
     }
 
     /**

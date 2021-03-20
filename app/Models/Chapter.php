@@ -20,7 +20,8 @@ class Chapter extends Model
         protected $fillable = [
         'name',
         'description',
-        'logo_path'
+        'logo_path',
+        'logo_thin_path'
         ];
 
         public function user()

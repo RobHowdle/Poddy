@@ -6,6 +6,9 @@ import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-v
 import { InertiaProgress } from '@inertiajs/progress';
 import AudioVisual from 'vue-audio-visual'
 
+InertiaProgress.init({ color: '#4B5563' });
+
+
 const el = document.getElementById('app');
 
 createApp({
@@ -21,5 +24,4 @@ createApp({
     .use(AudioVisual)
     .mount(el);
 
-InertiaProgress.init({ color: '#4B5563' });
 

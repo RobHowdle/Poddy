@@ -9,7 +9,7 @@
 
     <div class="grid grid-flow-col grid-cols-2 gap-4 pt-4 bg-black" v-for="episode in episodes" :key="episode.id">
       <div class="flex justify-center p-6">
-        <img v-bind:src="episode.chapter.logo_path" alt="Chapter Logo" class="w-70 h-80" />
+        <img v-bind:src="'/images/chapter_logos/' + episode.chapter.logo_path" alt="Chapter Logo" class="w-70 h-80" />
       </div>
 
       <div class="my-auto bg-gray-200 bg-opacity-25 border border-gray-200" v-for="episode in episodes" :key="episode.id">

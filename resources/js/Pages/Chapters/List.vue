@@ -1,11 +1,11 @@
 <template>
   <app-layout>
     <template #header>
-      <h2 class="p-3 text-xl font-semibold text-center text-white bg-black font-rakkas">The UKGS Family</h2>
+      <p class="p-3 text-3xl font-semibold text-center text-white bg-black font-rakkas">The UKGS Family</p>
     </template>
 
     <div class="py-12">
-      <div class="flex flex-wrap items-center justify-center w-full min-h-screen gap-3 py-5 bg-image">
+      <div class="flex flex-wrap items-center justify-center w-full gap-3 py-5 bg-image">
         <div v-for="chapter in chapters" :key="chapter.id" class="w-8/12 p-3 text-white bg-white border border-gray-300 rounded shadow-lg backdrop md:w-1/4 bg-opacity-10">
           <!-- header -->
           <div class="w-full pb-3 mb-3 border-b border-white border-1">
@@ -13,7 +13,7 @@
           </div>
           <!-- body -->
           <div>
-            <img v-bind:src="chapter.logo_thin_path" alt="Chapter Thin Logo" class="object-cover w-full h-48 mb-2" />
+            <img v-bind:src="'/images/chapter_logos/' + chapter.logo_thin_path" alt="Chapter Thin Logo" class="object-cover w-full h-48 mb-2" />
             <p class="mb-3 text-base tracking-wide text-center text-shadow">
               {{ chapter.description }}
             </p>
