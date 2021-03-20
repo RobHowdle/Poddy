@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AdminUserSeeder extends Seeder
 {
@@ -25,6 +28,6 @@ class AdminUserSeeder extends Seeder
                 $role->syncPermissions($permissions);
 
                 $user->assignRole($role->name);
-                }
     }
+                
 }

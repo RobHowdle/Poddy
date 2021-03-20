@@ -17,6 +17,7 @@ class CreateChaptersTable extends Migration
             $table->id();
             $table->string('name');
             $table->longText('description');
+            $table->string('logo_thin_path');
             $table->string('logo_path');
             $table->timestamps();
             $table->softDeletes();

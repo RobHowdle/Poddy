@@ -3,23 +3,42 @@
     <template #header> </template>
 
     <div class="py-12">
-      <div class="grid grid-cols-3 gap-4 text-white" v-for="episode in episodes" :key="episode.id">
-        <div>
-          <img v-bind:src="episode.chapter.logo_path" />
+      <div class="grid grid-cols-2 gap-4 text-white" v-for="episode in episodes" :key="episode.id">
+        <div class="flex justify-end p-6">
+          <img v-bind:src="episode.chapter.logo_path" alt="Chapter Logo" class="my-auto h-70 w-80" />
         </div>
 
-        <div>
-          <h2 class="p-3 text-xl font-semibold text-left text-white bg-black font-rakkas">{{ episode.title }}</h2>
-          <h2 class="p-3 text-xl font-semibold text-left text-white bg-black font-rakkas">{{ episode.long_description }}</h2>
-          <h2 class="p-3 text-xl font-semibold text-left text-white bg-black font-rakkas">{{ episode.explicit ? "Yes" : "No" }}</h2>
-          <h2 class="p-3 text-xl font-semibold text-left text-white bg-black font-rakkas">AUTHOR</h2>
-          <h2 class="p-3 text-xl font-semibold text-left text-white bg-black font-rakkas">AUTHOR EMAIL</h2>
-
-          <audio controls>
-            <source src="https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg" type="audio/ogg" />
-          </audio>
+        <div class="flex p-6 justify-left">
+          <ul class="my-auto">
+            <li>
+              <p class="p-3 italic text-white underline">Episode Title</p>
+              <h1 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">{{ episode.title }}</h1>
+            </li>
+            <li>
+              <p class="p-3 italic text-white underline">Description</p>
+              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">{{ episode.long_description }}</h2>
+            </li>
+            <li>
+              <p class="p-3 italic text-white underline">Explicit</p>
+              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">{{ episode.explicit ? "Yes" : "No" }}</h2>
+            </li>
+            <li>
+              <p class="p-3 italic text-white underline">Host</p>
+              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">ROBERT</h2>
+            </li>
+            <li>
+              <p class="p-3 italic text-white underline">Contact</p>
+              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">ROB@UKGHOSTSTORIES.CO.UK</h2>
+            </li>
+          </ul>
         </div>
       </div>
+      <div class="flex justify-center mt-3">
+        <audio class="w-3/4 rounded-full" controls>
+          <source src="https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg" type="audio/ogg" />
+        </audio>
+      </div>
+      <div></div>
     </div>
   </app-layout>
 </template>
@@ -40,4 +59,7 @@ export default {
 </script>
 
 <style lang="scss">
+.title {
+  font-size: 1.25rem;
+}
 </style>

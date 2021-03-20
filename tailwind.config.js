@@ -17,10 +17,20 @@ module.exports = {
             },
             colors: {
                 green: {
-                    irish: '#1C9962',
+                    irish: '#0e9c62'
+                },
+                blue: {
+                    cumbria: '#0071CD'
+                },
+                red: {
+                    liverpool: '#d00027',
+                    original: '#ff0000'
                 }
             }
-        }
+        },
+            fontSize: {
+                'headingParagraph': '1.5rem',
+            },
     },
 
     variants: {
