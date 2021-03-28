@@ -49,6 +49,9 @@ Route::get('/list/episodes', [EpisodesController::class, 'latestEpisode']);
 Route::get('/episodes/create', [EpisodesController::class, 'create'])
     ->name('episode-create');
 
+Route::post('/episodes/store', [EpisodesController::class, 'store'])
+    ->name('episode-store');
+
 Route::get('/episodes/{id}/listen', [EpisodesController::class, 'show'])
     ->name('episode-listen');
 
@@ -61,6 +64,10 @@ Route::get('/chapters', [ChaptersController::class, 'index'])
 
 Route::get('/chapters/create', [ChaptersController::class, 'create'])
     ->name('chapter-create');
+
+Route::get('/chapters/{id}/', [ChaptersController::class, 'show'])
+    ->name('chapter-view');
+
 Route::post('/chapters/store', [ChaptersController::class, 'store'])
     ->name('chapter-store');
 

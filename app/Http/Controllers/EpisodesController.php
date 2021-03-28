@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Episode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+
 
 class EpisodesController extends Controller
 {
@@ -40,7 +44,39 @@ class EpisodesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=> ['required'],
+            'short_description'=> ['required'],
+            'long_description'=> ['required'],
+            'chapter_id'=> ['required'],
+            'user_id'=> ['required'],
+            'author_email'=> ['required'],
+            'file'=> ['required'],
+            'url'=> ['required'],
+        ]);
+        dd($request->all());
+
+        $episode = new Episode();
+        $episode->title = $request['title'];
+        $episode->short_description = $request['short_description'];
+        $episode->long_description = $request['long_description'];
+        $episode->chapter_id = $request['chapter_id'];
+        $episode->user_id = $request['user_id'];
+        $episode->author_email = $request['author_email'];
+        $episode->file = $request['file'];
+        $episode->url = $request['url'];
+        
+        if($request['file']) {
+        $file = $request['file'];
+        $extension = $file->getClientOriginalExtension();
+        $name = time() . '_'. $file->getClientOriginalName();
+        Storage::disk('public')->put($name, File::get($file));
+        $episode->url = $name;
+        }
+
+        $episode->save();
+
+        return Redirect::route('episodes')->with('success', 'Episode upload.');
     }
 
     /**

@@ -68,15 +68,6 @@ class ChaptersController extends Controller
             }
 
             $chapter->save();
-
-        // Chapter::create([
-        //     'name'=> $request->get('name'),
-        //     'host'=> $request->get('host'),
-        //     'description'=> $request->get('description'),
-        //     'logo_path'=> $request->file('logo') ? $request->file('logo')->store('/images/chapter_logos') : null,
-        //     'logo_thin_path'=> $request->file('thinLogo') ? $request->file('thinLogo')->store('/images/chapter_logos') :
-        //     null,
-        // ]);
     
             return Redirect::route('chapters')->with('success', 'Chapter created.');
     }
@@ -89,7 +80,10 @@ class ChaptersController extends Controller
      */
     public function show($id)
     {
-        //
+        $chapters = Chapter::with('episode')->where('id', $id)->get();
+        return Inertia::render('Chapters/View', [
+        'chapters' => $chapters
+        ]);
     }
 
     /**

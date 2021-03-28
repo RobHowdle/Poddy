@@ -37,6 +37,7 @@
     "dependencies": {
         "@inertiajs/inertia-vue": "^0.5.5",
         "alpinejs": "^2.8.0",
+        "inertia-table": "^1.0.8",
         "moment": "^2.29.1",
         "tailwindcss": "^2.0.3",
         "vue-audio-visual": "^2.2.2",
@@ -45,6 +46,7 @@
         "vue-moment": "^4.1.0",
         "vue-router": "^3.5.1",
         "vue-tailwind-icons": "^0.1.2",
+        "vue-toggle-btn": "^0.1.2",
         "vuejs-datepicker": "^1.6.2",
         "vuex": "^3.6.2",
         "yarn": "^1.22.10"
