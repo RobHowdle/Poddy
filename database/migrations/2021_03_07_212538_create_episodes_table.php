@@ -17,12 +17,12 @@ class CreateEpisodesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('chapter_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('author_email');
+            // $table->string('author_email');
             $table->string('title');
             $table->string('short_description');
             $table->string('long_description');
             $table->boolean('explicit');
-            $table->string('keywords');
+            // $table->string('keywords');
             $table->string('url');
             $table->timestamps();
             $table->softDeletes();

@@ -23,6 +23,10 @@
               <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">{{ episode.explicit ? "Yes" : "No" }}</h2>
             </li>
             <li>
+              <p class="p-3 italic text-white underline">Uploaded @</p>
+              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">{{ episode.created_at }}</h2>
+            </li>
+            <li>
               <p class="p-3 italic text-white underline">Host</p>
               <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">ROBERT</h2>
             </li>

@@ -17,7 +17,7 @@
             <p class="mb-3 text-base tracking-wide text-center text-shadow">
               {{ chapter.description }}
             </p>
-            <p class="mb-3 text-base tracking-wide text-center text-shadow">Established: {{ moment(chapter.created_at).format("DD-MM-YYYY") }}</p>
+            <p class="mb-3 text-base tracking-wide text-center text-shadow">Established: {{ moment(chapter.created_at).format("Do MMM YYYY") }}</p>
 
             <inertia-link class="backdrop bg-white bg-opacity-0 w-full border border-white px-3 py-1.5 rounded focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-40 hover:bg-opacity-10 text-lg" as="button" type="button" :href="route('chapter-view', chapter.id)"> View Chapter </inertia-link>
           </div>

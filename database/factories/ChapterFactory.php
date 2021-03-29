@@ -22,10 +22,27 @@ class ChapterFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->city . " Chapter",
-            'description' => $this->faker->text($maxNbChars = 30),
+            'name' => "Original Chapter",
+            'description' => "The original Chapter",
             'logo_path' => $this->faker->imageUrl($width = 640, $height = 480),
-            'logo_thin_path' => $this->faker->imageUrl($width = 640, $height = 480)
+            'logo_thin_path' => $this->faker->imageUrl($width = 640, $height = 480),
+
+            'name' => "Irish Chapter",
+            'description' => "The Irish Chapter",
+            'logo_path' => $this->faker->imageUrl($width = 640, $height = 480),
+            'logo_thin_path' => $this->faker->imageUrl($width = 640, $height = 480),
+
+
+            'name' => "Liverpool Chapter",
+            'description' => "The Liverpool Chapter",
+            'logo_path' => $this->faker->imageUrl($width = 640, $height = 480),
+            'logo_thin_path' => $this->faker->imageUrl($width = 640, $height = 480),
+
+            'name' => "Cumbria Chapter",
+            'description' => "The Cumbria Chapter",
+            'logo_path' => $this->faker->imageUrl($width = 640, $height = 480),
+            'logo_thin_path' => $this->faker->imageUrl($width = 640, $height = 480),
+
         ];
     }
 }
