@@ -8,7 +8,10 @@
       </div>
       <div class="grid grid-flow-col text-white auto-cols-max">
         <div class="flex justify-start w-full p-6">
-          <table class="border border-separate table-auto border-red-original" v-for="chapter in chapters" :key="chapter.id">
+          <ul>
+            <li>{{ episodes }}</li>
+          </ul>
+          <!-- <table class="border border-separate table-auto border-red-original" v-for="chapter in chapters" :key="chapter.id">
             <thead>
               <tr class="text-center">
                 <td >Title</td>
@@ -23,7 +26,7 @@
                 <td>30:00</td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
         </div>
 
         <div class="flex justify-end p-6">
@@ -59,20 +62,27 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout"
 import moment from "moment"
-import InertiaTable from "inertia-table"
+// import InertiaTable from "inertia-table"
+import axios from "axios"
 
 export default {
   props: {
     chapters: Object,
     users: Object,
-    episodes: Object,
+    // episodes: Array,
   },
   components: {
     AppLayout,
-    InertiaTable,
+    // InertiaTable,
+    axios,
+  },
+  mounted() {
+    // axios.get("chapters.episodes").then((response) => (this.episodes = response))
+    axios.get("chapters.episodes").then((response) => (this.episodes = response.data.episodes))
   },
   data() {
     return {
+      episodes: {},
       chapter: {
         name: null,
         user_id: null,

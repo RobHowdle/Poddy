@@ -25,7 +25,10 @@
               </div>
               <div class="mt-2 md:flex-1 mb:mt-0 md:px-3">
                 <div class="mb-4">
-                  <input class="w-full p-4 border-0 shadow-inner" type="text" id="user_id" v-model="form.user_id" :error="form.errors.user_id" placeholder="Darth Vader" />
+                  <select class="w-full p-4 border-0 shadow-inner" v-model="form.userId" :error="form.errors.userId">
+                    <option :value="null" placeholder="Darth Vader">Please select a host...</option>
+                    <option :value="user.id" v-for="(user, userInd) in users" :key="`user${userInd}`">{{ user.name }}</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -83,13 +86,14 @@ import FileInput from "../../Jetstream/FileInput.vue"
 export default {
   components: { AppLayout, FileInput },
   remember: "form",
+  props: { users: {} },
 
   data() {
     return {
       form: this.$inertia.form({
         _method: "post",
         name: null,
-        user_id: null,
+        userId: null,
         description: null,
         logo: null,
         thinLogo: null,

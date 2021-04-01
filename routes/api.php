@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/list/episodes', 'EpisodesController@latestEpisode');
 Route::get('/list/episode', 'EpisodesController@show');
 Route::get('/list/chapters', 'ChaptersController@index');
+Route::resource('chapter.episodes', 'ChapterEpisodesController@index');

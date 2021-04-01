@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Chapter;
 use Illuminate\Http\Request;
@@ -33,7 +34,10 @@ class ChaptersController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Chapters/Upsert');
+
+        return Inertia::render('Chapters/Upsert', [
+        'users' => User::where('is_host', 1)->get()
+        ]);
     }
 
     /**
@@ -44,10 +48,9 @@ class ChaptersController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => ['required'],
-            'user_id' => ['required'],
+            'userId' => ['required'],
             'description' => ['required'],
             'logo' => ['required'],
             'thinLogo' => ['required']
@@ -55,7 +58,7 @@ class ChaptersController extends Controller
 
             $chapter = new Chapter();
             $chapter->name = $request['name'];
-            $chapter->user_id = $request['user_id'];
+            $chapter->user_id = $request['userId'];
             $chapter->description = $request['description'];
             
             if($request['logo']) {
@@ -64,9 +67,15 @@ class ChaptersController extends Controller
                 $name = time() . '_'. $logo->getClientOriginalName();
                 Storage::disk('public')->put($name, File::get($logo));
                 $chapter->logo_path = $name;
+            }
+                if($request['thinLogo']) {
+                $thinLogo = $request['thinLogo'];
+                $extension = $thinLogo->getClientOriginalExtension();
+                $name = time() . '_'. $thinLogo->getClientOriginalName();
+                Storage::disk('public')->put($name, File::get($thinLogo));
                 $chapter->logo_thin_path = $name;
             }
-
+            
             $chapter->save();
     
             return Redirect::route('chapters')->with('success', 'Chapter created.');

@@ -18891,12 +18891,15 @@ __webpack_require__.r(__webpack_exports__);
     FileInput: _Jetstream_FileInput_vue__WEBPACK_IMPORTED_MODULE_1__.default
   },
   remember: "form",
+  props: {
+    users: {}
+  },
   data: function data() {
     return {
       form: this.$inertia.form({
         _method: "post",
         name: null,
-        user_id: null,
+        userId: null,
         description: null,
         logo: null,
         thinLogo: null
@@ -18941,23 +18944,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var inertia_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! inertia-table */ "./node_modules/inertia-table/dist/inertia-table.common.js");
-/* harmony import */ var inertia_table__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(inertia_table__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
+ // import InertiaTable from "inertia-table"
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     chapters: Object,
-    users: Object,
-    episodes: Object
+    users: Object // episodes: Array,
+
   },
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
-    InertiaTable: (inertia_table__WEBPACK_IMPORTED_MODULE_2___default())
+    // InertiaTable,
+    axios: (axios__WEBPACK_IMPORTED_MODULE_2___default())
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    // axios.get("chapters.episodes").then((response) => (this.episodes = response))
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("chapters.episodes").then(function (response) {
+      return _this.episodes = response.data.episodes;
+    });
   },
   data: function data() {
     return {
+      episodes: {},
       chapter: {
         name: null,
         user_id: null,
@@ -23268,11 +23282,19 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   "class": "mb-4"
 };
-var _hoisted_12 = {
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("option", {
+  value: null,
+  placeholder: "Darth Vader"
+}, "Please select a host...", -1
+/* HOISTED */
+);
+
+var _hoisted_13 = {
   "class": "mb-6 md:flex"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "md:w-1/3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", {
   "class": "text-sm tracking-wide uppercase"
@@ -23282,17 +23304,17 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_15 = {
   "class": "mt-2 md:flex-1 mb:mt-0 md:px-3"
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"mb-6 md:flex\" data-v-1db929c2><div class=\"md:w-1/3\" data-v-1db929c2><legend class=\"text-sm tracking-wide uppercase\" data-v-1db929c2>Established Date</legend><p class=\"text-xs font-light text-red\" data-v-1db929c2>The date this chapter officially joined the show.</p></div><div class=\"mt-2 md:flex-1 mb:mt-0 md:px-3\" data-v-1db929c2></div></div>", 1);
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"mb-6 md:flex\" data-v-1db929c2><div class=\"md:w-1/3\" data-v-1db929c2><legend class=\"text-sm tracking-wide uppercase\" data-v-1db929c2>Established Date</legend><p class=\"text-xs font-light text-red\" data-v-1db929c2>The date this chapter officially joined the show.</p></div><div class=\"mt-2 md:flex-1 mb:mt-0 md:px-3\" data-v-1db929c2></div></div>", 1);
 
-var _hoisted_16 = {
+var _hoisted_17 = {
   "class": "mb-6 md:flex"
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "md:w-1/3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", {
   "class": "text-sm tracking-wide uppercase"
@@ -23300,25 +23322,25 @@ var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_18 = {
-  "class": "px-3 text-center md:flex-1"
-};
 var _hoisted_19 = {
-  "class": "relative mx-auto button bg-gold hover:bg-gold-dark text-cream cusor-pointer"
-};
-
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Chapter Image ");
-
-var _hoisted_21 = {
   "class": "px-3 text-center md:flex-1"
 };
-var _hoisted_22 = {
+var _hoisted_20 = {
   "class": "relative mx-auto button bg-gold hover:bg-gold-dark text-cream cusor-pointer"
 };
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Diet Chapter Image ");
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Chapter Image ");
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_22 = {
+  "class": "px-3 text-center md:flex-1"
+};
+var _hoisted_23 = {
+  "class": "relative mx-auto button bg-gold hover:bg-gold-dark text-cream cusor-pointer"
+};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Diet Chapter Image ");
+
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "mb-6 border border-b-0 md:flex border-t-1 border-x-0 border-cream-dark"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "px-3 text-center md:flex-1 md:text-right"
@@ -23359,18 +23381,24 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         placeholder: "Death Star Chapter"
       }, null, 8
       /* PROPS */
-      , ["error"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      , ["error"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
         "class": "w-full p-4 border-0 shadow-inner",
-        type: "text",
-        id: "user_id",
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-          return $data.form.user_id = $event;
+          return $data.form.userId = $event;
         }),
-        error: $data.form.errors.user_id,
-        placeholder: "Darth Vader"
-      }, null, 8
+        error: $data.form.errors.userId
+      }, [_hoisted_12, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.users, function (user, userInd) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
+          value: user.id,
+          key: "user".concat(userInd)
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 9
+        /* TEXT, PROPS */
+        , ["value"]);
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))], 8
       /* PROPS */
-      , ["error"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.user_id]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      , ["error"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.form.userId]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         "class": "w-full p-4 border-0 shadow-inner",
         type: "text",
         id: "description",
@@ -23381,7 +23409,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         placeholder: "Once a powerful weapon that is susceptible to any form of attack, now it litters the galaxy echoing screams of the millions of souls that were lost... "
       }, null, 8
       /* PROPS */
-      , ["error"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description]])])]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      , ["error"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description]])])]), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         onChange: _cache[4] || (_cache[4] = function () {
           return $options.selectFile && $options.selectFile.apply($options, arguments);
         }),
@@ -23391,7 +23419,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         "class": "w-full pb-8 pr-6 lg:w-1/2"
       }, null, 32
       /* HYDRATE_EVENTS */
-      ), _hoisted_20])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      ), _hoisted_21])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         onChange: _cache[5] || (_cache[5] = function () {
           return $options.selectThinFile && $options.selectThinFile.apply($options, arguments);
         }),
@@ -23401,7 +23429,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         "class": "w-full pb-8 pr-6 lg:w-1/2"
       }, null, 32
       /* HYDRATE_EVENTS */
-      ), _hoisted_23])])]), _hoisted_24], 32
+      ), _hoisted_24])])]), _hoisted_25], 32
       /* HYDRATE_EVENTS */
       )])])])];
     }),
@@ -23443,43 +23471,42 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "flex justify-start w-full p-6"
 };
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", {
-  "class": "text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "Title"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "Description"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "Duration")])], -1
-/* HOISTED */
-);
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "30:00", -1
-/* HOISTED */
-);
-
-var _hoisted_7 = {
+var _hoisted_5 = {
   "class": "flex justify-end p-6"
 };
-var _hoisted_8 = {
+var _hoisted_6 = {
   "class": "my-auto"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
   "class": "p-3 italic text-white underline title font-rakkas"
 }, "The Chapter", -1
 /* HOISTED */
 );
 
+var _hoisted_8 = {
+  "class": "pl-6 font-semibold text-left text-white bg-black font-rakkas"
+};
+var _hoisted_9 = {
+  "class": "p-3 italic text-white underline title font-rakkas"
+};
 var _hoisted_10 = {
   "class": "pl-6 font-semibold text-left text-white bg-black font-rakkas"
 };
-var _hoisted_11 = {
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "p-3 italic text-white underline title font-rakkas"
-};
+}, "Established", -1
+/* HOISTED */
+);
+
 var _hoisted_12 = {
   "class": "pl-6 font-semibold text-left text-white bg-black font-rakkas"
 };
 
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "p-3 italic text-white underline title font-rakkas"
-}, "Established", -1
+}, "Host", -1
 /* HOISTED */
 );
 
@@ -23487,17 +23514,7 @@ var _hoisted_14 = {
   "class": "pl-6 font-semibold text-left text-white bg-black font-rakkas"
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-  "class": "p-3 italic text-white underline title font-rakkas"
-}, "Host", -1
-/* HOISTED */
-);
-
-var _hoisted_16 = {
-  "class": "pl-6 font-semibold text-left text-white bg-black font-rakkas"
-};
-
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "p-3 italic text-white underline title font-rakkas"
 }, "Contact"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
   "class": "pl-6 font-semibold text-left text-white bg-black font-rakkas"
@@ -23505,7 +23522,7 @@ var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "Individual Host Social Media")], -1
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "Individual Host Social Media")], -1
 /* HOISTED */
 );
 
@@ -23529,34 +23546,19 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
         , ["src"])])]);
       }), 128
       /* KEYED_FRAGMENT */
-      )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.chapters, function (chapter) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("table", {
-          "class": "border border-separate table-auto border-red-original",
-          key: chapter.id
-        }, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(chapter.episode, function (episode) {
-          return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
-            key: episode.id
-          }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(episode.title), 1
-          /* TEXT */
-          ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(episode.short_description), 1
-          /* TEXT */
-          ), _hoisted_6]);
-        }), 128
-        /* KEYED_FRAGMENT */
-        ))])]);
-      }), 128
-      /* KEYED_FRAGMENT */
-      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.chapter.name), 1
+      )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.episodes), 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_11, "About the " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.chapter.name), 1
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <table class=\"border border-separate table-auto border-red-original\" v-for=\"chapter in chapters\" :key=\"chapter.id\">\r\n            <thead>\r\n              <tr class=\"text-center\">\r\n                <td >Title</td>\r\n                <td>Description</td>\r\n                <td>Duration</td>\r\n              </tr>\r\n            </thead>\r\n            <tbody>\r\n              <tr v-for=\"episode in chapter.episode\" :key=\"episode.id\">\r\n                <td>{{ episode.title }}</td>\r\n                <td>{{ episode.short_description }}</td>\r\n                <td>30:00</td>\r\n              </tr>\r\n            </tbody>\r\n          </table> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.chapter.name), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.chapter.description), 1
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_9, "About the " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.chapter.name), 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.moment($data.chapter.created_at).format("Do MMM YYYY")), 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.chapter.description), 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.chapter.user_id), 1
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.moment($data.chapter.created_at).format("Do MMM YYYY")), 1
       /* TEXT */
-      )]), _hoisted_17])])]), _hoisted_18])];
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.chapter.user_id), 1
+      /* TEXT */
+      )]), _hoisted_15])])]), _hoisted_16])];
     }),
     _: 1
     /* STABLE */
