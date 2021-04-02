@@ -24,8 +24,8 @@
             </div>
             <div class="flex items-center">
               <div class="text-sm">
-                <p class="leading-none text-gray-900">{{ episode.user_id }}</p>
-                <p class="text-gray-600">{{ episode.created_at }}</p>
+                <p class="leading-none text-gray-900">{{ episode.user.name }}</p>
+                <p class="text-gray-600">{{ moment(episode.created_at).format("Do MMM YYYY") }}</p>
               </div>
             </div>
           </div>
@@ -37,15 +37,23 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout"
+import moment from "moment"
 
 export default {
   props: {
     episodes: Object,
     chapters: Object,
-    user: Object,
+    users: Object,
   },
   components: {
     AppLayout,
+    moment,
+  },
+
+  methods: {
+    moment: function (date) {
+      return moment(date)
+    },
   },
 }
 </script>

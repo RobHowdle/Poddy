@@ -100,16 +100,18 @@
 
                     <div class="border-t border-gray-100"></div>
 
-                    <div class="block px-4 py-2 text-xs text-gray-400">Manage Episodes</div>
+                    <div v-if="hasRole('Admin')">
+                      <div class="block px-4 py-2 text-xs text-gray-400">Manage Episodes</div>
 
-                    <jet-dropdown-link :href="route('episode-create')">Upload Episode</jet-dropdown-link>
+                      <jet-dropdown-link :href="route('episode-create')">Upload Episode</jet-dropdown-link>
+                    </div>
 
                     <div class="border-t border-gray-100"></div>
+                    <div v-if="hasRole('Admin')">
+                      <div class="block px-4 py-2 text-xs text-gray-400">Manage Chapters</div>
 
-                    <div class="block px-4 py-2 text-xs text-gray-400">Manage Chapters</div>
-
-                    <jet-dropdown-link :href="route('chapter-create')">Create Chapter</jet-dropdown-link>
-
+                      <jet-dropdown-link :href="route('chapter-create')">Create Chapter</jet-dropdown-link>
+                    </div>
                     <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures"> API Tokens </jet-dropdown-link>
 
                     <div class="border-t border-gray-100"></div>

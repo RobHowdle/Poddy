@@ -66,10 +66,10 @@ class User extends Authenticatable
 
     public function chapter()
     {
-        return $this->hasOneThrough(Chapter::class, Episode::class);
+        return $this->hasOne(Chapter::class);
     }
     public function episode()
     {
-        return $this->hasManyThrough(Episode::class, Chapter::class);
+        return $this->hasMany(Episode::class);
     }
 }

@@ -20,7 +20,18 @@ createApp({
             resolveErrors: page => (page.props.errors || {}),
         }),
 })
-    .mixin({ methods: { route } })
+    .mixin({
+    methods: {
+        route,
+
+        hasRole(role) {
+        if (!this.$page.props.auth.user || !this.$page.props.auth.user.roles)
+            return false;
+
+        return this.$page.props.auth.user.roles.some(userRole => userRole.name === role);
+        }
+    }
+    })
     .use(InertiaPlugin)
     .use(AudioVisual)
     .use(InertiaTable)

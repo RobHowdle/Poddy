@@ -20,8 +20,9 @@
             <p class="mb-3 text-base tracking-wide text-center text-shadow">Established: {{ moment(chapter.created_at).format("Do MMM YYYY") }}</p>
 
             <inertia-link class="backdrop bg-white bg-opacity-0 w-full border border-white px-3 py-1.5 rounded focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-40 hover:bg-opacity-10 text-lg" as="button" type="button" :href="route('chapter-view', chapter.id)"> View Chapter </inertia-link>
-
-            <inertia-link class="backdrop bg-white mt-4 bg-opacity-0 w-full border border-white px-3 py-1.5 rounded focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-40 hover:bg-opacity-10 text-lg" as="button" type="button" :href="route('chapter-edit', chapter.id)"> Edit Chapter </inertia-link>
+            <div v-if="hasRole('Admin')">
+              <inertia-link class="backdrop bg-white mt-4 bg-opacity-0 w-full border border-white px-3 py-1.5 rounded focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-40 hover:bg-opacity-10 text-lg" as="button" type="button" :href="route('chapter-edit', chapter.id)"> Edit Chapter </inertia-link>
+            </div>
           </div>
         </div>
       </div>
@@ -45,6 +46,7 @@ export default {
       chapter: {
         created_at: new Date(),
       },
+      role: "admin",
     }
   },
   methods: {

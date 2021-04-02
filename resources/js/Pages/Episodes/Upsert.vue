@@ -58,27 +58,13 @@
 
               <div class="mt-2 md:flex-1 mb:mt-0 md:px-3">
                 <div class="mb-4">
-                  <select v-model="form.chapter_id" class="w-full mt-1 form-select">
-                    <option :value="null">Choose a Chapter</option>
-                    <option v-for="chapter in chapters" :key="chapter.id" :value="chapter.id">{{ chapter.id }}</option>
+                  <select v-model="form.chapterId" class="w-full p-4 border-0 shadow-inner">
+                    <option :value="null">Please select a chapter...</option>
+                    <option v-for="(chapter, chapterInd) in chapters" :key="`chapter${chapterInd}`" :value="chapter.id">{{ chapter.name }}</option>
                   </select>
                 </div>
               </div>
             </div>
-
-            <!-- Episode Keywords -->
-            <!-- <div class="mb-8 md:flex">
-              <div class="md:w-1/3">
-                <legend class="text-sm tracking-wide uppercase">Episode Keywords</legend>
-                <p class="text-xs font-light text-red">Keywords related to the episode.</p>
-              </div>
-
-              <div class="mt-2 md:flex-1 mb:mt-0 md:px-3">
-                <div class="mb-4">
-                  <input class="w-full p-4 border-0 shadow-inner" type="text" id="name" v-model="form.episode_keyworkds" :error="form.errors.episode_long_description" placeholder="Each hall echos with the screms of those lost souls." />
-                </div>
-              </div>
-            </div> -->
 
             <!-- Episode Explicit -->
             <div class="mb-8 md:flex">
@@ -89,9 +75,7 @@
 
               <div class="mt-2 md:flex-1 mb:mt-0 md:px-3">
                 <div class="mb-4">
-                  <!-- <input type="checkbox" id="checkbox" v-model="explicit" true-value=" Yes" false-value=" No" />
-                  <label for="explicit">{{ explicit }}</label> -->
-                  <checkbox></checkbox>
+                  <checkbox v-model="form.explicit"></checkbox>
                 </div>
               </div>
             </div>
@@ -105,9 +89,9 @@
 
               <div class="mt-2 md:flex-1 mb:mt-0 md:px-3">
                 <div class="mb-4">
-                  <select v-model="form.user_id" class="w-full mt-1 form-select">
+                  <select v-model="form.userId" class="w-full mt-1 form-select" :error="form.errors.userId">
                     <option :value="null">Choose a Host</option>
-                    <option v-for="user in users" :key="user.id" :value="user.id">{{ name }}</option>
+                    <option :value="user.id" v-for="(user, userInd) in users" :key="`user${userInd}`">{{ user.name }}</option>
                   </select>
                 </div>
               </div>
@@ -162,8 +146,8 @@ export default {
   remember: "form",
 
   props: {
-    chapters: Array,
-    users: Array,
+    chapters: {},
+    users: {},
   },
 
   data() {
@@ -173,12 +157,12 @@ export default {
         title: null,
         short_description: null,
         long_description: null,
-        chapter_id: null,
-        user_id: null,
+        chapterId: null,
+        userId: null,
         explicit: null,
         author_email: null,
-        file: null,
-        url: null,
+        // file: null,
+        // url: null,
       }),
     }
   },

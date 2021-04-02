@@ -26,7 +26,7 @@ class Chapter extends Model
 
         public function user()
         {
-            return $this->hasOneThrough(User::class, Episode::class);
+            return $this->hasOne(User::class);
         }
 
         public function episode()

@@ -24,15 +24,15 @@
             </li>
             <li>
               <p class="p-3 italic text-white underline">Uploaded @</p>
-              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">{{ episode.created_at }}</h2>
+              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">{{ moment(episode.created_at).format("Do MMM YYYY") }}</h2>
             </li>
             <li>
               <p class="p-3 italic text-white underline">Host</p>
-              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">ROBERT</h2>
+              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">{{ episode.user.name }}</h2>
             </li>
             <li>
               <p class="p-3 italic text-white underline">Contact</p>
-              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">ROB@UKGHOSTSTORIES.CO.UK</h2>
+              <h2 class="pl-6 font-semibold text-left text-white bg-black title font-rakkas">{{ episode.author_email }}</h2>
             </li>
           </ul>
         </div>
@@ -49,6 +49,7 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout"
+import moment from "moment"
 
 export default {
   props: {
@@ -58,6 +59,12 @@ export default {
   },
   components: {
     AppLayout,
+    moment,
+  },
+  methods: {
+    moment: function (date) {
+      return moment(date)
+    },
   },
 }
 </script>

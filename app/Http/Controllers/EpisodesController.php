@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Chapter;
 use App\Models\Episode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -19,7 +21,7 @@ class EpisodesController extends Controller
      */
     public function index()
     {
-        $episodes = Episode::with('chapter')->take(30)->orderBy('created_at','desc')->get();
+        $episodes = Episode::with(['chapter', 'user'])->take(30)->orderBy('created_at','desc')->get();
 
             return Inertia::render('Episodes/List', [
                 'episodes' => $episodes
@@ -33,7 +35,10 @@ class EpisodesController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Episodes/Upsert');
+        return Inertia::render('Episodes/Upsert', [
+            'users' => User::where('is_host', 1)->get(),
+            'chapters' => Chapter::all(),
+        ]);
     }
 
     /**
@@ -48,32 +53,33 @@ class EpisodesController extends Controller
             'title'=> ['required'],
             'short_description'=> ['required'],
             'long_description'=> ['required'],
-            'chapter_id'=> ['required'],
-            'user_id'=> ['required'],
+            'chapterId'=> ['required'],
+            'userId'=> ['required'],
             'author_email'=> ['required'],
-            'file'=> ['required'],
-            'url'=> ['required'],
+            'explicit' => ['required']
+            // 'file'=> ['required'],
         ]);
-        dd($request->all());
+        
 
         $episode = new Episode();
         $episode->title = $request['title'];
         $episode->short_description = $request['short_description'];
         $episode->long_description = $request['long_description'];
-        $episode->chapter_id = $request['chapter_id'];
-        $episode->user_id = $request['user_id'];
+        $episode->chapter_id = $request['chapterId'];
+        $episode->user_id = $request['userId'];
         $episode->author_email = $request['author_email'];
-        $episode->file = $request['file'];
-        $episode->url = $request['url'];
+        $episode->explicit = $request['explicit'];
+        // $episode->file = $request['file'];
+        // $episode->url = $request['url'];
         
         if($request['file']) {
         $file = $request['file'];
         $extension = $file->getClientOriginalExtension();
         $name = time() . '_'. $file->getClientOriginalName();
         Storage::disk('public')->put($name, File::get($file));
-        $episode->url = $name;
+        // $episode->url = $name;
         }
-
+        
         $episode->save();
 
         return Redirect::route('episodes')->with('success', 'Episode upload.');
@@ -89,7 +95,7 @@ class EpisodesController extends Controller
     {
         $episodes = Episode::with(['chapter', 'user'])->where('id', $id)->get();
             return Inertia::render('Episodes/Listen', [
-                'episodes' => $episodes
+                'episodes' => $episodes,
         ]);
     }
 
