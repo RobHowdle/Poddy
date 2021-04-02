@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ahmedsaoud31/laravel-permission-to-vuejs": "dev-master",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -20,6 +21,7 @@
         "laravel/ui": "^3.2",
         "spatie/laravel-permission": "^4.0",
         "symfony/var-dumper": "^5.2",
+        "thepinecode/policy": "^0.4.1",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

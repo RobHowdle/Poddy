@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46d54536d5cff93c85bd132c123c0e61",
+    "content-hash": "89d1a32e9478fa18190ac27138426915",
     "packages": [
+        {
+            "name": "ahmedsaoud31/laravel-permission-to-vuejs",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ahmedsaoud31/laravel-permission-to-vuejs.git",
+                "reference": "8583ff41712f1f519ced813ab7239e628fc2f5d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ahmedsaoud31/laravel-permission-to-vuejs/zipball/8583ff41712f1f519ced813ab7239e628fc2f5d1",
+                "reference": "8583ff41712f1f519ced813ab7239e628fc2f5d1",
+                "shasum": ""
+            },
+            "require": {
+                "spatie/laravel-permission": ">=2.0"
+            },
+            "default-branch": true,
+            "type": "plugin",
+            "autoload": {
+                "psr-4": {
+                    "LaravelAndVueJS\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ahmed Abeoelsaoud",
+                    "email": "ahmedsaoud31@gmail.com"
+                }
+            ],
+            "description": "Laravel Permission Package To Use it in VueJs",
+            "support": {
+                "issues": "https://github.com/ahmedsaoud31/laravel-permission-to-vuejs/issues",
+                "source": "https://github.com/ahmedsaoud31/laravel-permission-to-vuejs/tree/master"
+            },
+            "time": "2019-11-15T05:07:03+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.2",
@@ -5414,6 +5455,64 @@
             "time": "2021-02-18T23:11:19+00:00"
         },
         {
+            "name": "thepinecode/policy",
+            "version": "v0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/conedevelopment/policy.git",
+                "reference": "34a417405135696e1299ddbfbcb7c7de5816e024"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/conedevelopment/policy/zipball/34a417405135696e1299ddbfbcb7c7de5816e024",
+                "reference": "34a417405135696e1299ddbfbcb7c7de5816e024",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0 || ^7.0 || ^8.22.1",
+                "php": "^7.2.5 | ^8.0"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.9.1",
+                "laravel/laravel": "^8.0",
+                "mockery/mockery": "^1.3.1",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "project",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pine\\Policy\\PolicyServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pine\\Policy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cone Development",
+                    "email": "hello@conedevelopment.com"
+                }
+            ],
+            "description": "Using Laravel's authorization on the front-end.",
+            "support": {
+                "issues": "https://github.com/conedevelopment/policy/issues",
+                "source": "https://github.com/conedevelopment/policy/tree/v0.4.1"
+            },
+            "abandoned": "conedevelopment/policy",
+            "time": "2021-03-02T07:19:40+00:00"
+        },
+        {
             "name": "tightenco/ziggy",
             "version": "v1.0.5",
             "source": {
@@ -8355,7 +8454,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "ahmedsaoud31/laravel-permission-to-vuejs": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

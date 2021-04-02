@@ -22,9 +22,22 @@ class ChaptersController extends Controller
      */
     public function index()
     {
-        $chapters = Chapter::all();
-
-        return Inertia::render('Chapters/List', ['chapters' => $chapters]);
+        return Inertia::render('Chapters/List', [
+            'chapters' => Chapter::all()->map(function ($chapters) {
+                return [
+                    'id' => $chapters->id,
+                    'name' => $chapters->name,
+                    'user_id' => $chapters->user_id,
+                    'description'=> $chapters->description,
+                    'logo_path' => $chapters->logo_path,
+                    'logo_thin_path' => $chapters->logo_thin_path,
+                    'created_at' => $chapters->created_at,
+                    'can' => [
+                        'edit_chapter' => Auth::user()->can('chapter-edit', $chapters),
+                    ]
+                ];
+            })
+        ]);
     }
 
     /**
@@ -103,9 +116,19 @@ class ChaptersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Chapter $chapter)
     {
-        //
+        dd($chapter);
+        return Inertia::render('Chapters/Edit', [
+            'chapter' => [
+                'id' => $chapter->id,
+                'user_id' => $chapter->userId,
+                'name' => $chapter->name,
+                'description' => $chapter->description,
+                'logo_path' => $chapter->logo_path,
+                'logo_thin_path' => $chapter->logo_thin_path
+            ],
+        ]);
     }
 
     /**
@@ -115,9 +138,42 @@ class ChaptersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Chapter $chapter)
     {
-        //
+
+        $request->validate([
+            'name' => ['required'],
+            'userId' => ['required'],
+            'description' => ['required'],
+            'logo' => ['required'],
+            'thinLogo' => ['required']
+        ]);
+
+        $chapter->update($request([
+            'name' => $request['name'],
+            'userId' => $request['userId'],
+            'description' => $request['description'],
+            'logo' => $request['logo'],
+            'thinLogo' => $request['thinLogo'],
+        ]));
+
+        if($request['logo']) {
+            $logo = $request['logo'];
+            $extension = $logo->getClientOriginalExtension();
+            $name = time() . '_'. $logo->getClientOriginalName();
+            Storage::disk('public')->put($name, File::get($logo));
+            $chapter->logo_path = $name;
+        }
+
+        if($request['thinLogo']) {
+            $thinLogo = $request['thinLogo'];
+            $extension = $thinLogo->getClientOriginalExtension();
+            $name = time() . '_'. $thinLogo->getClientOriginalName();
+            Storage::disk('public')->put($name, File::get($thinLogo));
+            $chapter->logo_thin_path = $name;
+        }
+        
+        return Redirect::back()->with('success', 'Chapter updated.');
     }
 
     /**

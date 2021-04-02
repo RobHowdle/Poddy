@@ -19,64 +19,70 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+    Route::get('/', function () {
+        return Inertia::render('Welcome', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
+    });
 
-Route::post('logout', [LoginController::class, 'logout'])
-->name('logout');
+    Route::post('logout', [LoginController::class, 'logout'])
+    ->name('logout');
 
 // Dashboard
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-return Inertia::render('Dashboard');
-})->name('dashboard');
+    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 
 
 
 
 
 // Episodes
-Route::get('/episodes', [EpisodesController::class, 'index'])
-    ->name('episodes');
+    Route::get('/episodes', [EpisodesController::class, 'index'])
+        ->name('episodes');
 
-Route::get('/list/episodes', [EpisodesController::class, 'latestEpisode']);
-    
-Route::get('/episodes/create', [EpisodesController::class, 'create'])
-    ->name('episode-create');
+    Route::get('/list/episodes', [EpisodesController::class, 'latestEpisode']);
+        
+    Route::get('/episodes/create', [EpisodesController::class, 'create'])
+        ->name('episode-create');
 
-Route::post('/episodes/store', [EpisodesController::class, 'store'])
-    ->name('episode-store');
+    Route::post('/episodes/store', [EpisodesController::class, 'store'])
+        ->name('episode-store');
 
-Route::get('/episodes/{id}/listen', [EpisodesController::class, 'show'])
-    ->name('episode-listen');
+    Route::get('/episodes/{id}/listen', [EpisodesController::class, 'show'])
+        ->name('episode-listen');
 
 
 
 
 // Chapters
-Route::get('/chapters', [ChaptersController::class, 'index'])
-    ->name('chapters');
+    Route::get('/chapters', [ChaptersController::class, 'index'])
+        ->name('chapters');
 
-Route::get('/chapters/create', [ChaptersController::class, 'create'])
-    ->name('chapter-create');
+    Route::get('/chapters/create', [ChaptersController::class, 'create'])
+        ->name('chapter-create');
 
-Route::get('/chapters/{id}/', [ChaptersController::class, 'show'])
-    ->name('chapter-view');
+    Route::get('/chapters/{id}/', [ChaptersController::class, 'show'])
+        ->name('chapter-view');
 
-Route::post('/chapters/store', [ChaptersController::class, 'store'])
-    ->name('chapter-store');
+    Route::post('/chapters/store', [ChaptersController::class, 'store'])
+        ->name('chapter-store');
+
+    Route::get('/chapters/{id}/edit', [ChaptersController::class, 'edit'])
+        ->name('chapter-edit');
+
+    Route::put('/chapter/{id}', [ChaptersController::class, 'update'])
+        ->name('chapter-update');
 
 
 
 
 // Players
-Route::get('/apple-player', [PlayerController::class, 'applePlayer'])
-    ->name('apple-player');
-    
-Route::get('/spotify-player', [PlayerController::class, 'spotifyPlayer'])
-    ->name('spotify-player');
+    Route::get('/apple-player', [PlayerController::class, 'applePlayer'])
+        ->name('apple-player');
+        
+    Route::get('/spotify-player', [PlayerController::class, 'spotifyPlayer'])
+        ->name('spotify-player');

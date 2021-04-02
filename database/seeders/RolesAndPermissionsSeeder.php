@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -21,9 +22,15 @@ class RolesAndPermissionsSeeder extends Seeder
             'guard_name' => 'web',
         ]);
     
-        $writeGallery = Permission::create(['name' => 'upload-files', 'guard-name' => 'web']);
+        $createChapter = Permission::create(['name' => 'create-chapter']);
+        $editChapter = Permission::create(['name' => 'edit-chapter']);
+        $deleteChapter = Permission::create(['name' => 'delete-chapter']);
+        $writeGallery = Permission::create(['name' => 'upload-files']);
 
         $adminRole->syncPermissions([
+            $createChapter,
+            $editChapter,
+            $deleteChapter,
             $writeGallery,
         ]);
 
