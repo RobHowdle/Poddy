@@ -36,10 +36,6 @@ use App\Http\Controllers\Auth\LoginController;
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-
-
-
-
 // Episodes
     Route::get('/episodes', [EpisodesController::class, 'index'])
         ->name('episodes');

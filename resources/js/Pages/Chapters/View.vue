@@ -1,35 +1,18 @@
 <template>
   <app-layout>
-    <div class="py-12">
-      <div class="grid grid-cols-1 gap-4 text-white" v-for="chapter in chapters" :key="chapter.id">
+    <div class="py-12" v-for="chapter in chapters" :key="chapter.id">
+      <div class="grid grid-cols-1 gap-4 text-white">
         <div class="flex justify-center p-6">
           <img v-bind:src="'/images/chapter_logos/' + chapter.logo_thin_path" alt="Chapter Thin Logo" class="my-auto h-70 w-80" />
         </div>
       </div>
-      <div class="grid grid-flow-col text-white auto-cols-max">
-        <div class="flex justify-start w-full p-6">
-          <ul>
-            <li>{{ episodes }}</li>
-          </ul>
-          <!-- <table class="border border-separate table-auto border-red-original" v-for="chapter in chapters" :key="chapter.id">
-            <thead>
-              <tr class="text-center">
-                <td >Title</td>
-                <td>Description</td>
-                <td>Duration</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="episode in chapter.episode" :key="episode.id">
-                <td>{{ episode.title }}</td>
-                <td>{{ episode.short_description }}</td>
-                <td>30:00</td>
-              </tr>
-            </tbody>
-          </table> -->
+      <div class="grid justify-start grid-cols-2 p-6 text-white">
+        <div>
+          <p class="p-3 italic text-white underline title font-rakkas">A word from the creator...</p>
+          <h2 class="pl-6 font-semibold text-left text-white bg-black font-rakkas">{{ chapter.about }}</h2>
         </div>
 
-        <div class="flex justify-end p-6">
+        <div class="flex justify-start p-6">
           <ul class="my-auto">
             <li>
               <h1 class="p-3 italic text-white underline title font-rakkas">The Chapter</h1>
@@ -62,34 +45,25 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout"
 import moment from "moment"
-// import InertiaTable from "inertia-table"
-import axios from "axios"
 
 export default {
   props: {
     chapters: Object,
     users: Object,
-    // episodes: Array,
   },
   components: {
     AppLayout,
-    // InertiaTable,
-    axios,
-  },
-  mounted() {
-    // axios.get("chapters.episodes").then((response) => (this.episodes = response))
-    axios.get("chapters.episodes").then((response) => (this.episodes = response.data.episodes))
   },
   data() {
     return {
       episodes: {},
       chapter: {
-        name: null,
         user_id: null,
         users: {},
-        episode_id: null,
-        episodes: {},
-        created_at: new Date(),
+        name: null,
+        about: null,
+        description: null,
+        logo_thin_path: null,
       },
     }
   },

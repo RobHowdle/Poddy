@@ -21,10 +21,22 @@ class EpisodesController extends Controller
      */
     public function index()
     {
-        $episodes = Episode::with(['chapter', 'user'])->take(30)->orderBy('created_at','desc')->get();
-
             return Inertia::render('Episodes/List', [
-                'episodes' => $episodes
+                'episodes' => Episode::with(['chapter', 'user'])
+                    ->orderBy('created_at','desc')
+                    // ->map(function ($episodes) {
+                    //     return [
+                    //         'id' => $episodes->id,
+                    //         'chapter_id' => $episodes->chapter_id,
+                    //         'user_id' => $episodes->user_id,
+                    //         'title' => $episodes->title,
+                    //         'short_description' => $episodes->short_description,
+                    //         'explicit' => $episodes->explicit,
+                    //         'created_at' => $episodes->created_at,
+                    //         'links' => $episodes->linksBe
+                    //     ];
+                    // })
+                    ->paginate()
         ]);
     }
 

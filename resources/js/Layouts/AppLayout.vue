@@ -17,8 +17,15 @@
 
               <!-- Navigation Links -->
               <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')"> Dashboard </jet-nav-link>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="canLogin">
+                  <jet-nav-link v-if="$page.props.auth" :href="route('dashboard')" :active="route().current('dashboard')"> Dashboard </jet-nav-link>
+                </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-else>
+                  <jet-nav-link :href="route('login')"> Log in </jet-nav-link>
+
+                  <jet-nav-link v-if="canRegister" :href="route('register')"> Register </jet-nav-link>
+                </div>
                 <jet-nav-link :href="route('chapters')" :active="route().current('chapters')"> Chapters </jet-nav-link>
 
                 <jet-nav-link :href="route('episodes')" :active="route().current('episodes')"> Episodes </jet-nav-link>
@@ -222,6 +229,7 @@ import JetNavLink from "@/Jetstream/NavLink"
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink"
 
 export default {
+  props: { canLogin: Boolean, canRegister: Boolean },
   components: {
     JetApplicationMark,
     JetBanner,
@@ -230,7 +238,11 @@ export default {
     JetNavLink,
     JetResponsiveNavLink,
   },
-
+  computed: {
+    user() {
+      return this.$page.props.auth
+    },
+  },
   data() {
     return {
       showingNavigationDropdown: false,

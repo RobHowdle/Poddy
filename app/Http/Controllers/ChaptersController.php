@@ -102,11 +102,9 @@ class ChaptersController extends Controller
      */
     public function show($id)
     {
-        $chapters = Chapter::with('episode')
-            ->where('id', $id)
-            ->get();
         return Inertia::render('Chapters/View', [
-        'chapters' => $chapters
+            'chapters' => Chapter::where('id', $id)->get()
+
         ]);
     }
 
@@ -118,7 +116,7 @@ class ChaptersController extends Controller
      */
     public function edit(Chapter $chapter)
     {
-        dd($chapter);
+        
         return Inertia::render('Chapters/Edit', [
             'chapter' => [
                 'id' => $chapter->id,
