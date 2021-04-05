@@ -24,9 +24,8 @@
               </div>
             </div>
           </div>
-          <!-- <pagination class="mt-6" :links="episodes.links" /> -->
+          <pagination class="mt-6" :links="episodes.links" />
         </div>
-        <v-pagination v-model="page" :pages="10" :range-size="1" active-color="#DCEDFF" @update:modelValue="updateHandler" />
       </div>
     </div>
   </app-layout>
@@ -35,9 +34,7 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout"
 // import moment from "moment"
-// import Pagination from "@/Shared/Pagination"
-import VPagination from "@hennge/vue3-pagination"
-import "@hennge/vue3-pagination/dist/vue3-pagination.css"
+import Pagination from "@/Shared/Pagination"
 
 export default {
   props: {
@@ -47,8 +44,7 @@ export default {
   },
   components: {
     AppLayout,
-    // Pagination,
-    VPagination,
+    Pagination,
   },
 
   methods: {
