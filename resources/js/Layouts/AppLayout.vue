@@ -29,6 +29,8 @@
                 <jet-nav-link :href="route('chapters')" :active="route().current('chapters')"> Chapters </jet-nav-link>
 
                 <jet-nav-link :href="route('episodes')" :active="route().current('episodes')"> Episodes </jet-nav-link>
+
+                <jet-nav-link :href="route('dashboard')" :active="route().current()">Gallery</jet-nav-link>
               </div>
             </div>
 

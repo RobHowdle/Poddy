@@ -36,7 +36,7 @@ class EpisodesController extends Controller
                     //         'links' => $episodes->linksBe
                     //     ];
                     // })
-                    ->paginate()
+                    ->paginate(12)
         ]);
     }
 

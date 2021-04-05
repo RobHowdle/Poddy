@@ -24,8 +24,8 @@
               </div>
             </div>
           </div>
-          <pagination class="mt-6" :links="episodes.links" />
         </div>
+        <pagination class="mt-6" :links="episodes.links" />
       </div>
     </div>
   </app-layout>
